@@ -12,6 +12,9 @@
 <li><a href="https://github.com/webview/webview">webview</a></li>
 </ul>
 ]]></content>
+      <categories>
+        <category>Golang</category>
+      </categories>
       <tags>
         <tag>Golang</tag>
         <tag>GUI</tag>
@@ -22,6 +25,9 @@
     <url>/2022/11/03/Golang-embed%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p>有点懒还没来得及写</p>
 ]]></content>
+      <categories>
+        <category>Golang</category>
+      </categories>
       <tags>
         <tag>Golang</tag>
         <tag>Golang包</tag>
@@ -33,6 +39,9 @@
     <url>/2022/11/03/Golang%E6%9E%84%E5%BB%BA%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F%E4%B9%8Bwebview/</url>
     <content><![CDATA[<h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>最近接到的任务是开发一个可以在mac和windows上运行的程序，作为一个golang程序员首先想到的自然是golang。跨平台编译运行也让他可以做这件事。结合前面我了解到的一些框架（<a href="https://github.com/ying32/govcl">govcl</a>,<a href="https://github.com/fyne-io/fyne">fyne</a>,<a href="https://github.com/wailsapp/wails">wails</a>,<a href="https://github.com/lxn/walk">walk</a>,<a href="https://www.wxwidgets.org/">wxwidgets</a>），考虑学习的时间成本我本来是想用<a href="https://github.com/fyne-io/fyne">fyne</a>来做。直到后来我找到了这个能更快完成需求的包<a href="https://github.com/webview/webview">webview</a>。所以今天主要来介绍<a href="https://github.com/webview/webview">webview</a>这个可以跨平台生成可执行文件的框架。</p>
 <h2 id="Golang-的-webview-package"><a href="#Golang-的-webview-package" class="headerlink" title="Golang 的 webview package"></a>Golang 的 webview package</h2>]]></content>
+      <categories>
+        <category>Golang</category>
+      </categories>
       <tags>
         <tag>Golang</tag>
         <tag>GUI</tag>
@@ -230,6 +239,9 @@
 <p>再次感谢以上文章引用中提到的博主与作者！！！</p>
 </blockquote>
 ]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
       <tags>
         <tag>NFC</tag>
         <tag>Ndef</tag>
@@ -292,6 +304,9 @@
 <p>以上，解决了我这次项目中的问题。</p>
 <p>本来还想写一下关于golang静态编译的问题，但发现我还没有真正搞明白，所以先贴个链接吧，以后再写：<a href="https://juejin.cn/post/7053450610386468894">https://juejin.cn/post/7053450610386468894</a></p>
 ]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
       <tags>
         <tag>Golang</tag>
         <tag>Docker</tag>
