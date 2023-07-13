@@ -1,741 +1,159 @@
+
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>   N+1.</title>
+  <meta name="description" content="记录生活.">
+  <!-- 标签页图标 -->
   
-  
-  <title>N+1</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="N+1">
-<meta property="og:url" content="https://mangk.github.io/index.html">
-<meta property="og:site_name" content="N+1">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="MangK">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="N+1" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
 
+  <!-- 图标库 -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <!-- 动画库 -->
   
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
   
-<link rel="stylesheet" href="/css/style.css">
+  <!-- css文件 -->
+  
+<link rel="stylesheet" href="/css/white.css">
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
+  <!-- 代码高亮 -->
   
 <meta name="generator" content="Hexo 6.3.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">N+1</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+
+<div class="menu-outer">
+    <div class="menu-inner">
+      <div class="menu-site-name  animate__animated  animate__fadeInUp">
+        <a href="/">
+          N+1.
+        </a>
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://mangk.github.io"></form>
       </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-免费泛域名SSL证书" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/03/09/%E5%85%8D%E8%B4%B9%E6%B3%9B%E5%9F%9F%E5%90%8DSSL%E8%AF%81%E4%B9%A6/" class="article-date">
-  <time class="dt-published" datetime="2023-03-09T11:20:34.000Z" itemprop="datePublished">2023-03-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+      <div class="menu-group">
+        <ul class="menu-ul">
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/03/09/%E5%85%8D%E8%B4%B9%E6%B3%9B%E5%9F%9F%E5%90%8DSSL%E8%AF%81%E4%B9%A6/">免费泛域名SSL证书</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="使用acme-sh配置泛域名证书"><a href="#使用acme-sh配置泛域名证书" class="headerlink" title="使用acme.sh配置泛域名证书"></a>使用acme.sh配置泛域名证书</h1><h2 id="安装acme-sh"><a href="#安装acme-sh" class="headerlink" title="安装acme.sh"></a>安装acme.sh</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">curl https://<span class="hljs-built_in">get</span>.acme.<span class="hljs-keyword">sh</span> | <span class="hljs-keyword">sh</span> -s email=youEmail@email.<span class="hljs-keyword">com</span><br></code></pre></td></tr></table></figure>
-<h3 id="生成泛域名证书："><a href="#生成泛域名证书：" class="headerlink" title="生成泛域名证书："></a>生成泛域名证书：</h3><ol>
-<li>执行命令<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">acme<span class="hljs-selector-class">.sh</span> <span class="hljs-attr">--issue</span> <span class="hljs-attr">--dns</span> -d *<span class="hljs-selector-class">.youDomin</span><span class="hljs-selector-class">.com</span> \<br> <span class="hljs-attr">--yes-I-know-dns-manual-mode-enough-go-ahead-please</span><br></code></pre></td></tr></table></figure></li>
-<li>这时候会输出生成如下内容<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">Using</span> CA: https://acme.zerossl.com/v2/DV90<br>Single <span class="hljs-keyword">domain</span>=<span class="hljs-string">&#x27;*.youDomin.com&#x27;</span><br>Getting <span class="hljs-keyword">domain</span> auth token <span class="hljs-keyword">for</span> <span class="hljs-keyword">each</span> <span class="hljs-keyword">domain</span><br>Getting webroot <span class="hljs-keyword">for</span> <span class="hljs-keyword">domain</span>=<span class="hljs-string">&#x27;*.youDomin.com&#x27;</span><br><span class="hljs-keyword">Add</span> the <span class="hljs-keyword">following</span> TXT <span class="hljs-type">record</span>:<br><span class="hljs-keyword">Domain</span>: <span class="hljs-string">&#x27;_acme-challenge.youDomin.com&#x27;</span><br>TXT <span class="hljs-keyword">value</span>: <span class="hljs-string">&#x27;fdlkajflajfkdlJFKLDSAJFLKJDSLKJF&#x27;</span><br>Please be aware that you prepend _acme-challenge. <span class="hljs-keyword">before</span> your <span class="hljs-keyword">domain</span><br>so the resulting subdomain will be: _acme-challenge.youDomin.com<br>Please <span class="hljs-keyword">add</span> the TXT records <span class="hljs-keyword">to</span> the domains, <span class="hljs-keyword">and</span> re-run <span class="hljs-keyword">with</span> <span class="hljs-comment">--renew.</span><br>Please <span class="hljs-keyword">add</span> <span class="hljs-string">&#x27;--debug&#x27;</span> <span class="hljs-keyword">or</span> <span class="hljs-string">&#x27;--log&#x27;</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">check</span> more details.<br>See: https://github.com/acmesh-official/acme.sh/wiki/How-<span class="hljs-keyword">to</span>-<span class="hljs-keyword">debug</span>-acme.sh<br></code></pre></td></tr></table></figure>
-去域名管理后台添加dns记录<code>_acme-challenge.youDomin.com</code>类型为<code>TXT</code>值为<code>fdlkajflajfkdlJFKLDSAJFLKJDSLKJF</code></li>
-<li>执行命令<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">acme<span class="hljs-selector-class">.sh</span> <span class="hljs-attr">--renew</span> -d *<span class="hljs-selector-class">.youDomin</span><span class="hljs-selector-class">.com</span> <span class="hljs-attr">--yes-I-know-dns-manual-mode-enough-go-ahead-please</span><br></code></pre></td></tr></table></figure>
-完成验证。<br>此时证书会被下载到服务器上</li>
-</ol>
-<h3 id="配置nginx自动替换证书"><a href="#配置nginx自动替换证书" class="headerlink" title="配置nginx自动替换证书"></a>配置nginx自动替换证书</h3><p>创建目录及文件<code>/etc/nginx/conf.d/ssl/key.pem</code>,<code>/etc/nginx/conf.d/ssl/cert.pem</code></p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs gradle">acme.sh --install-cert -d *.youDomin.com \<br>--key-<span class="hljs-keyword">file</span>       <span class="hljs-regexp">/etc/</span>nginx<span class="hljs-regexp">/conf.d/</span>ssl/key.pem  \<br>--fullchain-<span class="hljs-keyword">file</span> <span class="hljs-regexp">/etc/</span>nginx<span class="hljs-regexp">/conf.d/</span>ssl/cert.pem \<br>--reloadcmd     <span class="hljs-string">&quot;nginx -s reload&quot;</span><br></code></pre></td></tr></table></figure>
-<p>此时证书会被复制到<code>/etc/nginx/conf.d/ssl/</code>目录下。并自动通过命令<code>nginx -s reload</code>重启nginx。所以这里都要替换成自己真是的。</p>
-<h3 id="这样就算完成了，acme-sh创建的定时任务会自动续期证书并更新证书重启nginx"><a href="#这样就算完成了，acme-sh创建的定时任务会自动续期证书并更新证书重启nginx" class="headerlink" title="这样就算完成了，acme.sh创建的定时任务会自动续期证书并更新证书重启nginx"></a>这样就算完成了，acme.sh创建的定时任务会自动续期证书并更新证书重启nginx</h3><h3 id="参见：https-github-com-acmesh-official-acme-sh"><a href="#参见：https-github-com-acmesh-official-acme-sh" class="headerlink" title="参见：https://github.com/acmesh-official/acme.sh"></a>参见：<a target="_blank" rel="noopener" href="https://github.com/acmesh-official/acme.sh">https://github.com/acmesh-official/acme.sh</a></h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://mangk.github.io/2023/03/09/%E5%85%8D%E8%B4%B9%E6%B3%9B%E5%9F%9F%E5%90%8DSSL%E8%AF%81%E4%B9%A6/" data-id="clf10vdxj0000lu9kbv18a8e5" data-title="免费泛域名SSL证书" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server/" rel="tag">Server</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-NFC基础知识与读写" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/11/18/NFC%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%AF%BB%E5%86%99/" class="article-date">
-  <time class="dt-published" datetime="2022-11-18T08:59:43.000Z" itemprop="datePublished">2022-11-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%95%99%E7%A8%8B/">教程</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          <a href="/" class="nav-link">
+            <li class="menu-li  animate__animated  animate__fadeInUp">
+              HOME
+            </li>
+          </a>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/11/18/NFC%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%AF%BB%E5%86%99/">NFC基础知识与读写</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>最近的项目需求中，需要使用NFC芯片来保存一些类似于url的信息并通过iOS或Android手机能正常获取到相关信息，所以针对NFC相关技术与特点进行了学习和总结。我会把我看过教程链接也同步贴到文章中。因为手上只有M1卡，所以下面的主要内容也围绕M1卡来进行</p>
-<h2 id="什么是NFC"><a href="#什么是NFC" class="headerlink" title="什么是NFC"></a>什么是NFC</h2><p>近场通信（英语：Near-field communication，NFC），又称近距离无线通信、近距离通信，是一套通信协议，让两个电子设备（其中一个通常是移动设备，例如智能手机）在相距几厘米之内进行通信。NFC，如同过去的电子票券智能卡一般，将允许移动支付取代或支持这类系统。NFC应用于社交网络，分享联系方式、照片、视频或文件。具备 NFC 功能的设备可以充当电子身份证和钥匙卡。NFC 提供了设置简便的低速连接，也可用于引导能力更强的无线连接。</p>
-<p>近场通信技术由非接触式射频识别（RFID）演变而来，由飞利浦半导体（现恩智浦半导体）、诺基亚和索尼共同于2004年研制开发，其基础是RFID及互连技术。近场通信是一种短距高频的无线电技术，在13.56MHz频率运行于20厘米距离内。其传输速度有106 Kbit&#x2F;秒、212 Kbit&#x2F;秒或者424 Kbit&#x2F;秒三种。目前近场通信已通过成为ISO&#x2F;IEC IS 18092国际标准、EMCA-340标准与ETSI TS 102 190标准。NFC采用主动和被动两种读取模式。</p>
-<p>每一个完整的NFC设备可以用三种模式工作：</p>
-<ul>
-<li>卡模拟模式（Card emulation mode）：这个模式其实就是相当于一张采用RFID技术的IC卡。可以替代现在大量的IC卡（包括信用卡）场合商场刷卡、IPASS、门禁管制、车票、门票等等。此种方式下，有一个极大的优点，那就是卡片通过非接触读卡器的RF域来供电，即便是寄主设备（如手机）没电也可以工作。NFC设备若要进行卡片模拟（Card Emulation）相关应用，则必须内置安全组件（Security Element, SE）之NFC芯片或通过软件实现主机卡模拟(Host Card Emulation，HCE)。</li>
-<li>读卡器模式（Reader&#x2F;Writer mode）：作为非接触读卡器使用，比如从海报或者展览信息电子标签上读取相关信息。</li>
-<li>点对点模式（P2P mode）：这个模式和红外线差不多，可用于数据交换，只是传输距离较短，传输创建速度较快，传输速度也快些，功耗低（蓝牙也类似）。将两个具备NFC功能的设备链接，能实现数据点对点传输，如下载音乐、交换图片或者同步设备地址薄。因此通过NFC，多个设备如数位相机、PDA、计算机和手机之间都可以交换资料或者服务。</li>
-</ul>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/%E8%BF%91%E5%A0%B4%E9%80%9A%E8%A8%8A">维基百科-近场通信</a><br><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%BF%91%E5%9C%BA%E9%80%9A%E4%BF%A1/9741433?fromtitle=nfc&fromid=5684&fr=aladdin">百度-NFC</a></p>
-</blockquote>
-<h2 id="各种NFC卡的区别"><a href="#各种NFC卡的区别" class="headerlink" title="各种NFC卡的区别"></a>各种NFC卡的区别</h2><table>
-<thead>
-<tr>
-<th align="left">卡</th>
-<th align="left">功能描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">普通IC卡</td>
-<td align="left">0扇区不可以修改，其他扇区可反复擦写，我们使用的电梯卡、门禁卡等智能卡发卡商所使用的都是 M1 卡，可以理解为物业发的原卡。</td>
-</tr>
-<tr>
-<td align="left">UID 卡</td>
-<td align="left">普通复制卡，可以重复擦写所有扇区，主要应用在IC卡复制上，遇到带有防火墙的读卡器就会失效。</td>
-</tr>
-<tr>
-<td align="left">CUID 卡</td>
-<td align="left">可擦写防屏蔽卡，可以重复擦写所有扇区，UID卡复制无效的情况下使用，可以绕过防火墙。</td>
-</tr>
-<tr>
-<td align="left">FUID 卡</td>
-<td align="left">不可擦写防屏蔽卡，此卡的特点0扇区只能写入一次，写入一次变成 M1 卡，CUID 复制没用的情况下使用，可以绕过防火墙。</td>
-</tr>
-<tr>
-<td align="left">UFUID 卡</td>
-<td align="left">高级复制卡，我们就理解为是 UID 和 FUID 的合成卡，需要封卡操作，不封卡就是 UID 卡，封卡后就变为 M1 卡。</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/351266514">知乎-司小凯-UID卡、IC卡、ID卡、CUID 卡、FUID 卡、UFUID 卡 的区别</a></p>
-</blockquote>
-<h2 id="NFC标签类型"><a href="#NFC标签类型" class="headerlink" title="NFC标签类型"></a>NFC标签类型</h2><p>目前iOS系统并没有开放过多的NFC权限，所以这里讨论通过Android系统操作NFC标签，以下是Android系统操作NFC标签支持的标签技术类型</p>
-<table>
-<thead>
-<tr>
-<th align="left">Class</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">TagTechnology</td>
-<td align="left">这是所有标签技术类都必须实现的接口。</td>
-</tr>
-<tr>
-<td align="left">NfcA</td>
-<td align="left">提供对 NFC-A (ISO 14443-3A) 属性和 I&#x2F;O 操作的访问权限。</td>
-</tr>
-<tr>
-<td align="left">NfcB</td>
-<td align="left">提供对 NFC-B (ISO 14443-3B) 属性和 I&#x2F;O 操作的访问权限。</td>
-</tr>
-<tr>
-<td align="left">NfcF</td>
-<td align="left">提供对 NFC-F (JIS 6319-4) 属性和 I&#x2F;O 操作的访问权限。</td>
-</tr>
-<tr>
-<td align="left">NfcV</td>
-<td align="left">提供对 NFC-V (ISO 15693) 属性和 I&#x2F;O 操作的访问权限。</td>
-</tr>
-<tr>
-<td align="left">IsoDep</td>
-<td align="left">提供对 ISO-DEP (ISO 14443-4) 属性和 I&#x2F;O 操作的访问权限。</td>
-</tr>
-<tr>
-<td align="left">Ndef</td>
-<td align="left">提供对 NDEF 格式的 NFC 标签上的 NDEF 数据和操作的访问权限。</td>
-</tr>
-<tr>
-<td align="left">NdefFormatable</td>
-<td align="left">为可设置为 NDEF 格式的标签提供格式化操作。</td>
-</tr>
-<tr>
-<td align="left">MifareClassic</td>
-<td align="left">提供对 MIFARE Classic 属性和 I&#x2F;O 操作的访问权限（如果此 Android 设备支持 MIFARE）。</td>
-</tr>
-<tr>
-<td align="left">MifareUltralight</td>
-<td align="left">提供对 MIFARE Ultralight 属性和 I&#x2F;O 操作的访问权限（如果此 Android 设备支持 MIFARE）。</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://developer.android.google.cn/guide/topics/connectivity/nfc/advanced-nfc?hl=zh_cn">Android开发文档-高级NFC概览</a></p>
-</blockquote>
-<h2 id="NDEF数据格式"><a href="#NDEF数据格式" class="headerlink" title="NDEF数据格式"></a>NDEF数据格式</h2><p>这里讲的很详细：</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="http://article.iotxfd.cn/RFID/NDEF">NDEF技术规范</a></p>
-</blockquote>
-<h2 id="Mifare-Classic标签（M1卡）"><a href="#Mifare-Classic标签（M1卡）" class="headerlink" title="Mifare Classic标签（M1卡）"></a>Mifare Classic标签（M1卡）</h2><p>NFC 有很多协议，其中 MIFARE Classic 基于 ISO 14443-3 Type A 标准，里面有一些 MIFARE 的命令。通过这些命令，就可以控制 MIFARE Classic 卡的内容。<a target="_blank" rel="noopener" href="https://www.nxp.com/docs/en/data-sheet/MF1S70YYX_V1.pdf">MIFARE Classic EV1 4K S70</a></p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://jia.je/hardware/2020/05/10/mifare-classic-ndef/">杰哥的{运维,编程,调板子}小笔记-MIFARE Classic 上配置 NDEF</a></p>
-</blockquote>
-<h3 id="Sector-amp-Block-标签的内存布局"><a href="#Sector-amp-Block-标签的内存布局" class="headerlink" title="Sector&amp;Block 标签的内存布局"></a>Sector&amp;Block 标签的内存布局</h3><p>在 MIFARE Classic 中，有 Sector 和 Block 的概念，每个 Sector 有若干个 Block，其中最后一个 Block 是特殊的（称为 Sector Trailer），保存了这个 Sector 的一些信息：Key A、Access Bits、GPB 和 Key B。对于 Classic 4K，首先是 32 个有 4 blocks 的 sector，（M1卡）整体的内存布局大概是：</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">Sector</span> <span class="hljs-number">0</span><span class="hljs-operator">:</span><br>	<span class="hljs-built_in">Block</span> <span class="hljs-number">0</span> <span class="hljs-punctuation">(</span>出厂时写入了标签<span class="hljs-variable">ID</span>，厂商信息等，不可修改<span class="hljs-punctuation">)</span><br>	<span class="hljs-built_in">Block</span> <span class="hljs-number">1</span><br>	<span class="hljs-built_in">Block</span> <span class="hljs-number">2</span><br>	<span class="hljs-built_in">Block</span> <span class="hljs-number">3</span><span class="hljs-punctuation">(</span><span class="hljs-variable">Sector</span> <span class="hljs-variable">Trailer</span><span class="hljs-punctuation">)</span><br><span class="hljs-variable">Sector</span> <span class="hljs-number">1</span><span class="hljs-operator">:</span><br>	<span class="hljs-built_in">Block</span> <span class="hljs-number">4</span><br>	<span class="hljs-built_in">Block</span> <span class="hljs-number">5</span><br>	<span class="hljs-built_in">Block</span> <span class="hljs-number">6</span><br>	<span class="hljs-built_in">Block</span> <span class="hljs-number">7</span><span class="hljs-punctuation">(</span><span class="hljs-variable">Sector</span> <span class="hljs-variable">Trailer</span><span class="hljs-punctuation">)</span><br><span class="hljs-operator">...</span><br><span class="hljs-variable">Sector</span> <span class="hljs-number">15</span><span class="hljs-operator">:</span><br>	<span class="hljs-built_in">Block</span> <span class="hljs-number">60</span><br>	<span class="hljs-built_in">Block</span> <span class="hljs-number">61</span><br>	<span class="hljs-built_in">Block</span> <span class="hljs-number">62</span><br>	<span class="hljs-built_in">Block</span> <span class="hljs-number">63</span><span class="hljs-punctuation">(</span><span class="hljs-variable">Sector</span> <span class="hljs-variable">Trailer</span><span class="hljs-punctuation">)</span><br></code></pre></td></tr></table></figure>
-<p>Sector Trailer 的布局如下：</p>
-<table>
-<thead>
-<tr>
-<th align="left">Key A</th>
-<th align="left">Access Bits</th>
-<th align="left">GPB</th>
-<th align="left">Key B</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">6字节</td>
-<td align="left">3字节</td>
-<td align="left">1字节</td>
-<td align="left">6字节</td>
-</tr>
-</tbody></table>
-<h3 id="A、B密钥与控制位"><a href="#A、B密钥与控制位" class="headerlink" title="A、B密钥与控制位"></a>A、B密钥与控制位</h3><p>其中Access Bits（控制位）决定了密钥A、B对每个Block的读写权限，关于控制位详解参见：</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hanlinhe111/article/details/121100198">CSDN-小流氓哥哥-IC卡 M1卡 各个扇区 控制块 密码 详解</a></p>
-</blockquote>
-<h3 id="读取写入等操作命令"><a href="#读取写入等操作命令" class="headerlink" title="读取写入等操作命令"></a>读取写入等操作命令</h3><ul>
-<li>认证：<br>  一条认证指令：0x60 0x05 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF（0x60：使用密钥A[0x61：使用密钥B]，0x05：sector1-block1就是指从0开始编号的第n个块，后面6个16进制数即是密钥A）</li>
-<li>读取：<br>  一条读取指令：0x30 0x05 （0x30：读取命令，0x05：sector1-block1就是指从0开始编号的第n个块）<br>  这里是要读取扇区1块0的内容</li>
-<li>写入：<br>  一条写入指令：0xA0 0x06 0x64 0x6C 0x2F 0x62 0x75 0x73 0x69 0x6E 0x65 0x73 0x73 0x2F 0x3F 0x74 0x3D 0x6E（0xA0：写入命令，0x06：sector1-block2就是指从0开始编号的第n个块，后面为16个16进制数组成的要写入的内容）<br>  这里要写入扇区1块1的内容为：646C2F627573696E6573732F3F743D6E</li>
-<li>内容格式：<br>  文字内容需要将文字对应的Ascii码值转化为16进制</li>
-</ul>
-<p>借用微信的能力使用小程序对NFC标签进行读写的时候需要将命令内容转化为二进制内容：</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/community/develop/doc/0004e61e77ccb8187a5b325415b400">微信开放社区提问的评论内容</a></p>
-</blockquote>
-<h3 id="认证与读写流程"><a href="#认证与读写流程" class="headerlink" title="认证与读写流程"></a>认证与读写流程</h3><p>针对扇区的读取与写入操作都需要使用密钥进行验证，验证成功后就可以执行相关的读写命令</p>
-<h2 id="NDEF-on-Mifare-Classic"><a href="#NDEF-on-Mifare-Classic" class="headerlink" title="NDEF on Mifare Classic"></a>NDEF on Mifare Classic</h2><p>NDEF 只定义了数据格式，但为了实际使用，还得看具体情况。就好像文件内容保存在硬盘上的时候，并不是直接保存，而是通过文件系统，人为定义一个路径，这样大家才知道要从 &#x2F;etc&#x2F;shadow 文件去读 Linux 的用户密码信息，NDEF 也需要人为定义一些规则，再作为数据存放在智能卡里的某个地方，这样大家去读取 metadata，发现上 NDEF Tag，然后才会去解析 NDEF 信息。</p>
-<p>有些时候，这个定义很简单，比如直接把 NDEF 数据放在某个 block 里面；有的时候又很复杂，因为可能同时存在很多应用，NDEF 只是其中的一种，所以要有一种类似目录的东西去索引 NDEF“文件”。</p>
-<p>MIFARE Classic 上采用的方法上，在特定的 Sector（比如 Sector 0）放一些元数据，元数据里注明了其他的 Sector（从 1 开始的其它 sector）分别用于什么用途，然后 NDEF 是其中一种用途。这个结构叫做 <a target="_blank" rel="noopener" href="https://www.nxp.com.cn/docs/en/application-note/AN10787.pdf">MIFARE Application Directory</a>。具体来说，在 MIFARE Classic 里面，它规定 Block 1 和 Block 2 的内容如下：</p>
-<table>
-<thead>
-<tr>
-<th align="left">0-1</th>
-<th align="left">2-3</th>
-<th align="left">4-5</th>
-<th align="left">6-7</th>
-<th align="left">8-9</th>
-<th align="left">10-11</th>
-<th align="left">12-13</th>
-<th align="left">14-15</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">Info &amp; CRC</td>
-<td align="left">AID</td>
-<td align="left">AID</td>
-<td align="left">AID</td>
-<td align="left">AID</td>
-<td align="left">AID</td>
-<td align="left">AID</td>
-<td align="left">AID</td>
-</tr>
-<tr>
-<td align="left">AID</td>
-<td align="left">AID</td>
-<td align="left">AID</td>
-<td align="left">AID</td>
-<td align="left">AID</td>
-<td align="left">AID</td>
-<td align="left">AID</td>
-<td align="left">AID</td>
-</tr>
-</tbody></table>
-<p>第一个字节是 CRC 8，它的定义可以在这里的 <a target="_blank" rel="noopener" href="https://reveng.sourceforge.io/crc-catalogue/1-15.htm">CRC-8&#x2F;MIFARE-MAD</a> 里找到：初始值 0xC7，多项式上 0x1D。参与 CRC 计算的是按顺序从第二个字节开始的 31 个字节。</p>
-<p>第二个字节是 Info Byte，用处不大，见 MAD 的文档。</p>
-<p>之后每两个字节对应一个 Sector 的 AID（Application ID），比如 Block 1 的 2-3 字节对应 Sector 1 的 AID，Block 1 的 4-5 字节对应 Sector 2 的 AID，最后 Block 2 的 14-15 字节对应 Sector 15 的 AID。NDEF 的 AID 就是 0x03 0xE1。当软件发现这里的 AID 是 0x03E1 的时候，它就会去相应的 Sector 去读取 NDEF 信息。</p>
-<p>省流助手：[0x14 0x01]可以理解为标记扇区0为索引，[0x03 0xE1]可以理解为标记扇区为NDEF消息储存空间。所以一个将NDEF信息记录在Mifare Classic标签上的数据形式大概类似这样：</p>
-<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs tap">Sector0<br>    Block0 E7 CA C1 B3 5F<span class="hljs-number"> 08 </span>04<span class="hljs-number"> 00 </span>02<span class="hljs-number"> 78 </span>B1 F6 C9 6F FA 1D（芯片ID与厂商信息）<br>    Block1<span class="hljs-number"> 14 </span>01<span class="hljs-number"> 03 </span>E1<span class="hljs-number"> 03 </span>E1<span class="hljs-number"> 03 </span>E1<span class="hljs-number"> 03 </span>E1<span class="hljs-number"> 03 </span>E1<span class="hljs-number"> 03 </span>E1<span class="hljs-number"> 03 </span>E1（相当于所有扇区的类型索引）<br>    Block2<span class="hljs-number"> 03 </span>E1<span class="hljs-number"> 03 </span>E1<span class="hljs-number"> 03 </span>E1<span class="hljs-number"> 03 </span>E1<span class="hljs-number"> 03 </span>E1<span class="hljs-number"> 03 </span>E1<span class="hljs-number"> 03 </span>E1<span class="hljs-number"> 14 </span>01（相当于所有扇区的类型索引）<br>    Block3 A0 A1 A2 A3 A4 A5<span class="hljs-number"> 78 </span>77<span class="hljs-number"> 88 </span>C1 B0 B1 B2 B3 B4 B5（密钥A：A0A1A2A3A4A5 控制位：787788[表示扇区0密钥A只读，密钥B读写] C1[C1实际上不参与控制，可以用来替换成其他的内容保存用户数据] 密钥B：B0B1B2B3B4B5）<br>Sector1<br>    Block0<span class="hljs-number"> 48 </span>45 4C 4C 4F<span class="hljs-number"> 59 </span>4F<span class="hljs-number"> 52 </span>4C<span class="hljs-number"> 44 </span>00<span class="hljs-number"> 00 </span>00<span class="hljs-number"> 00 </span>00 00（自定义的数据内容，翻译：HELLOWORLD）<br>    Block1<span class="hljs-number"> 00 </span>00<span class="hljs-number"> 00 </span>00<span class="hljs-number"> 00 </span>00<span class="hljs-number"> 00 </span>00<span class="hljs-number"> 00 </span>00<span class="hljs-number"> 00 </span>00<span class="hljs-number"> 00 </span>00<span class="hljs-number"> 00 </span>00（没有填写内容）<br>    Block2<span class="hljs-number"> 00 </span>00<span class="hljs-number"> 00 </span>00<span class="hljs-number"> 00 </span>00<span class="hljs-number"> 00 </span>00<span class="hljs-number"> 00 </span>00<span class="hljs-number"> 00 </span>00<span class="hljs-number"> 00 </span>00<span class="hljs-number"> 00 </span>00（没有填写内容）<br>    Block3 FF FF FF FF FF FF<span class="hljs-number"> 78 </span>77<span class="hljs-number"> 88 </span>C1 FF FF FF FF FF FF（密钥与控制位）<br>Sector2<br>    Block0<br>    Block1<br>    Block2<br>    Block3<br>......<br><br>Sector16<br>    Block0<br>    Block1<br>    Block2<br>    Block3<br></code></pre></td></tr></table></figure>
-<h2 id="通过微信小程序读写标签"><a href="#通过微信小程序读写标签" class="headerlink" title="通过微信小程序读写标签"></a>通过微信小程序读写标签</h2><p>以上内容，主要是基础知识的补充，下面是真正的干货demo</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/MangK/NFCTools-MiniProgram">这里是我开源的用来对MifareClassic芯片（M1芯片）进行读写的项目</a></p>
-<h2 id="The-end"><a href="#The-end" class="headerlink" title="The end"></a>The end</h2><blockquote>
-<p>再次感谢以上文章引用中提到的博主与作者！！！</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://mangk.github.io/2022/11/18/NFC%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%AF%BB%E5%86%99/" data-id="cle6jw6j40007dffy1nz8d045" data-title="NFC基础知识与读写" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MifareClassic/" rel="tag">MifareClassic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NFC/" rel="tag">NFC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ndef/" rel="tag">Ndef</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Golang-embed包的使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/11/03/Golang-embed%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2022-11-03T09:02:56.000Z" itemprop="datePublished">2022-11-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Golang/">Golang</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          <a href="/archives" class="nav-link">
+            <li class="menu-li  animate__animated  animate__fadeInUp">
+              ARCHIVES
+            </li>
+          </a>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/11/03/Golang-embed%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/">Golang-embed包的使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>有点懒还没来得及写</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://mangk.github.io/2022/11/03/Golang-embed%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="cle6jw6j20003dffy9uoa7tzy" data-title="Golang-embed包的使用" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang%E5%8C%85/" rel="tag">Golang包</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/embed/" rel="tag">embed</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Golang-GUI开发总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/11/03/Golang-GUI%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/" class="article-date">
-  <time class="dt-published" datetime="2022-11-03T05:53:12.000Z" itemprop="datePublished">2022-11-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Golang/">Golang</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          <a href="/about" class="nav-link">
+            <li class="menu-li  animate__animated  animate__fadeInUp">
+              ABLUT
+            </li>
+          </a>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/11/03/Golang-GUI%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/">Golang GUI开发总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/ying32/govcl">govcl</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/fyne-io/fyne">fyne</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/wailsapp/wails">wails</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/lxn/walk">walk</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.wxwidgets.org/">wxwidgets</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/webview/webview">webview</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://mangk.github.io/2022/11/03/Golang-GUI%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/" data-id="cle6jw6j00001dffye2184dze" data-title="Golang GUI开发总结" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GUI/" rel="tag">GUI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Golang构建桌面程序之webview" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/11/03/Golang%E6%9E%84%E5%BB%BA%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F%E4%B9%8Bwebview/" class="article-date">
-  <time class="dt-published" datetime="2022-11-03T04:19:36.000Z" itemprop="datePublished">2022-11-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Golang/">Golang</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/11/03/Golang%E6%9E%84%E5%BB%BA%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F%E4%B9%8Bwebview/">Golang构建桌面程序之webview</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>最近接到的任务是开发一个可以在mac和windows上运行的程序，作为一个golang程序员首先想到的自然是golang。跨平台编译运行也让他可以做这件事。结合前面我了解到的一些框架（<a target="_blank" rel="noopener" href="https://github.com/ying32/govcl">govcl</a>,<a target="_blank" rel="noopener" href="https://github.com/fyne-io/fyne">fyne</a>,<a target="_blank" rel="noopener" href="https://github.com/wailsapp/wails">wails</a>,<a target="_blank" rel="noopener" href="https://github.com/lxn/walk">walk</a>,<a target="_blank" rel="noopener" href="https://www.wxwidgets.org/">wxwidgets</a>），考虑学习的时间成本我本来是想用<a target="_blank" rel="noopener" href="https://github.com/fyne-io/fyne">fyne</a>来做。直到后来我找到了这个能更快完成需求的包<a target="_blank" rel="noopener" href="https://github.com/webview/webview">webview</a>。所以今天主要来介绍<a target="_blank" rel="noopener" href="https://github.com/webview/webview">webview</a>这个可以跨平台生成可执行文件的框架。</p>
-<h2 id="Golang-的-webview-package"><a href="#Golang-的-webview-package" class="headerlink" title="Golang 的 webview package"></a>Golang 的 webview package</h2>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://mangk.github.io/2022/11/03/Golang%E6%9E%84%E5%BB%BA%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F%E4%B9%8Bwebview/" data-id="cle6jw6j30006dffy0v46aawm" data-title="Golang构建桌面程序之webview" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GUI/" rel="tag">GUI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/embed/" rel="tag">embed</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gin/" rel="tag">gin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webview/" rel="tag">webview</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-docker-swarm集群的使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/09/30/docker-swarm%E9%9B%86%E7%BE%A4%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2022-09-30T04:48:35.000Z" itemprop="datePublished">2022-09-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+             CATEGORIES
+             <div class="categories-outer " id="sort-div">
+               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Golang/">Golang</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%99%E7%A8%8B/">教程</a></li></ul>
+             </div>
+          </li>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/09/30/docker-swarm%E9%9B%86%E7%BE%A4%E7%9A%84%E4%BD%BF%E7%94%A8/">docker swarm集群的使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>咱们书接<a href="/2022/09/27/%E4%BD%BF%E7%94%A8alpine%E6%9E%84%E5%BB%BAdocker%E9%95%9C%E5%83%8F/">上回</a>，我搞定了golang程序的编译，搞定了docker镜像的打包，搞定了流水线。现在项目部署与热更新成了我要面对的问题。<br>受制于公司提供的部署环境（只提供给我一台主机，主机上有docker），我暂时没有k8s集群可用，但又希望能完成基于流水线的自动部署、热更新和不停机更新。所以返现了下面要说的<code>docker swarm</code></p>
-<h2 id="什么是-swarm-mode"><a href="#什么是-swarm-mode" class="headerlink" title="什么是 swarm mode"></a>什么是 swarm mode</h2><p>Swarm 是使用 SwarmKit 构建的 Docker 引擎内置（原生）的集群管理和编排工具。具体内容可以参见：<a target="_blank" rel="noopener" href="https://yeasy.gitbook.io/docker_practice/swarm_mode/overview">基本概念</a>，这里不再详细解释。</p>
-<h2 id="集群创建"><a href="#集群创建" class="headerlink" title="集群创建"></a>集群创建</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs routeros">docker swarm init<br>Swarm initialized: current node (dxn1zf6l61qsb1josjja83ngz) is now a manager.<br><br><span class="hljs-keyword">To</span> <span class="hljs-built_in">add</span> a worker <span class="hljs-keyword">to</span> this swarm, <span class="hljs-built_in">run</span> the following command:<br><br>    docker swarm join \<br>    --token SWMTKN-1-49nj1cmql0jkz5s954yi3oex3nedyz0fb0xx14ie39trti4wxv-8vxv8rssmk743ojnwacrr2e7c \<br>    192.168.99.100:2377<br><br><span class="hljs-keyword">To</span> <span class="hljs-built_in">add</span> a manager <span class="hljs-keyword">to</span> this swarm, <span class="hljs-built_in">run</span> <span class="hljs-string">&#x27;docker swarm join-token manager&#x27;</span> <span class="hljs-keyword">and</span> follow the instructions.<br></code></pre></td></tr></table></figure>
-<p>使用<code>docker swarm init</code>命令，创建一个集群，本机的docker就会变成一个单节点的集群。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://mangk.github.io/2022/09/30/docker-swarm%E9%9B%86%E7%BE%A4%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="cle6jw6j40008dffy4o2x20o7" data-title="docker swarm集群的使用" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-使用alpine构建docker镜像" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/09/27/%E4%BD%BF%E7%94%A8alpine%E6%9E%84%E5%BB%BAdocker%E9%95%9C%E5%83%8F/" class="article-date">
-  <time class="dt-published" datetime="2022-09-27T03:21:51.000Z" itemprop="datePublished">2022-09-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%95%99%E7%A8%8B/">教程</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/09/27/%E4%BD%BF%E7%94%A8alpine%E6%9E%84%E5%BB%BAdocker%E9%95%9C%E5%83%8F/">使用alpine构建Docker镜像</a>
-    </h1>
-  
+          <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
+            <i class="ri-menu-line"></i>
+          </li>
+        
+        </ul>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>最近的工作中，我使用Golang开发了一个web项目，并准备通过流水线的方式做持续集成与发布。在这是用过程中遇到了一些技术与问题包括：<a href="#%E9%80%9A%E8%BF%87Makefile%E6%89%93%E5%8C%85Golang%E7%A8%8B%E5%BA%8F">通过make构建golang程序</a>、<a href="#Dockerfile%E4%B8%8D%E8%83%BD%E8%AE%BF%E9%97%AE%E7%88%B6%E7%BA%A7%E7%9B%AE%E5%BD%95">dockerfile不能访问父级目录</a>、<a href="#%E4%BD%BF%E7%94%A8Alpine%E4%BD%9C%E4%B8%BA%E5%9F%BA%E7%A1%80%E6%9D%A5%E5%88%B6%E4%BD%9C%E6%88%91%E7%9A%84%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F">使用Alpine作为基础来制作我的容器镜像</a></p>
-<h1 id="通过Makefile打包Golang程序"><a href="#通过Makefile打包Golang程序" class="headerlink" title="通过Makefile打包Golang程序"></a>通过Makefile打包Golang程序</h1><h2 id="什么是Makefile"><a href="#什么是Makefile" class="headerlink" title="什么是Makefile"></a>什么是Makefile</h2><blockquote>
-<p>代码变成可执行文件，叫做编译（compile）；先编译这个，还是先编译那个（即编译的安排），叫做构建（build）。Make是最常用的构建工具，诞生于1977年，主要用于C语言的项目。但是实际上，任何只要某个文件有变化，就要重新构建的项目，都可以用Make构建。</p>
-<p>关于make命令这里不做深入介绍，引用链接提供介绍清晰明了的直通车（让我们感谢大神🙏）<br><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2015/02/make.html">阮一峰的网络日志-Make命令教程</a></p>
-</blockquote>
-<h2 id="Golang项目使用Makefile"><a href="#Golang项目使用Makefile" class="headerlink" title="Golang项目使用Makefile"></a>Golang项目使用Makefile</h2><p>我对makefile文件的理解是它有点像时一个命令的集合，通过一个个target&lt;目标&gt;可以按照顺序快速的执行多条命令而不用再手动一条条输入。if else与变量的加入让这个流程变得更加丰富和多变。省去了命令输入的同时也让代码运行的流程更加清楚。</p>
-<h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-meta"><span class="hljs-keyword">.PHONY</span>: build clean run</span><br><br><span class="hljs-comment"># golang 打包可执行文件的运行环境 (可以在运行make命令时传入：make OS=windows)</span><br>OS=linux<br>BUILD_DOCKER_IMAGE=0<br><br><span class="hljs-section">all: build</span><br><br><span class="hljs-section">run:</span><br>    go run ./cmd/main.go<br><br><span class="hljs-section">build:</span><br>    <span class="hljs-comment"># 下面的GOOS=$(OS)使用了上面定义的OS变量</span><br>    @GO111MODULE=on GOPROXY=https://goproxy.cn,direct CGO_ENABLED=0 go mod tidy &amp;&amp; GOOS=<span class="hljs-variable">$(OS)</span> go build -o app main.go<br><span class="hljs-comment"># if判断中同样可以使用变量</span><br><span class="hljs-keyword">ifeq</span> (<span class="hljs-variable">$(BUILD_DOCKER_IMAGE)</span>,1)<br>    @cd deploy &amp;&amp; docker build -t .<br><span class="hljs-keyword">endif</span><br><br><span class="hljs-section">clean:</span><br>    <span class="hljs-comment"># 命令前加@会让命令执行但不在控制台输出，这里没有@命令执行时会输出到终端</span><br>    rm app<br><span class="hljs-keyword">ifeq</span> (<span class="hljs-variable">$(BUILD_DOCKER_IMAGE)</span>,1)<br>    @docker rmi recommend_photo<br><span class="hljs-keyword">endif</span><br></code></pre></td></tr></table></figure>
+      </div>
 
-<h1 id="Dockerfile不能访问父级目录"><a href="#Dockerfile不能访问父级目录" class="headerlink" title="Dockerfile不能访问父级目录"></a>Dockerfile不能访问父级目录</h1><p>项目汇中我使用Dockerfile作为构架docker镜像的基础。通过<code>docker build -t image_name .</code>可以将内容打包成本地的docker镜像。但是鉴于我现有的项目目录结构使得<code>COPY</code>无法找到对应的文件，在查阅<code>docker build</code>命令后，发现可以通过<code>-f</code>选项来执行相关目录。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs 我的目录结构">.<br>├── README.md<br>├── cmd<br>│   └── main.go<br>├── conf<br>│   ├── ...<br>├── deploy<br>│   └── Dockerfile<br>├── http<br>│   ├── ...<br>├── model<br>│   ├── ...<br>├── makefile<br>├── go.mod<br>├── go.sum<br>├── config.yaml<br>├── sample.config.yaml<br></code></pre></td></tr></table></figure>
-<h2 id="解决Dockerbuild目录可见性问题（使用-f-选项）"><a href="#解决Dockerbuild目录可见性问题（使用-f-选项）" class="headerlink" title="解决Dockerbuild目录可见性问题（使用 -f 选项）"></a>解决Dockerbuild目录可见性问题（使用 -f 选项）</h2><p>docker与dockerfile的关系这里不再阐述。这只单独介绍docker build<code>-f</code>选项的使用</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell">➜  project git:(dev) docker build -h   <br>Flag shorthand -h has been deprecated, please use --help<br><br>Usage:  docker build [OPTIONS] PATH | URL | -<br><br>Build an image from a Dockerfile<br><br>Options:<br>      --add-host list           Add a custom host-to-IP mapping (host:ip)<br>      --build-arg list          Set build-time variables<br>      --cache-from strings      Images to consider as cache sources<br>      --disable-content-trust   Skip image verification (default true)<br>  -f, --file string             Name of the Dockerfile (Default is &#x27;PATH/Dockerfile&#x27;)<br>  ...<br></code></pre></td></tr></table></figure>
-<p>平时使用docker build一般是在根目录存在Dockerfile，构建的时候Dockerfile会在当前目录寻找需要的文件，但是在我的目录结构中，Dockerfile被放到了deploy目录下，导致我在根目录执行docker build会找不到file，但是cd到deploy目录里又会导致Dockerfile找不到根目录的文件。所以这里<code>-f</code>选项就可以使用了：</p>
-<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs docker">docker build -t name:tag  -f deploy/Dockerfile ./deploy<br></code></pre></td></tr></table></figure>
-<p><code>-f</code>选项指定了Dockerfile所在的目录，最后的<code>./deploy</code>是docker构建使用的根目录</p>
-<h2 id="向Dockerfile中传递编译参数"><a href="#向Dockerfile中传递编译参数" class="headerlink" title="向Dockerfile中传递编译参数"></a>向Dockerfile中传递编译参数</h2><p>通过<code>-build-arg &#123;ARG_NAME&#125;=&#123;value&#125;</code>可以传递参数，那么在dockerfile中，通过<code>arg</code> 定义的变量可以接收到传递到参数<code>ARG ARG_NAME=hello</code></p>
-<h1 id="使用Alpine作为基础来制作我的容器镜像"><a href="#使用Alpine作为基础来制作我的容器镜像" class="headerlink" title="使用Alpine作为基础来制作我的容器镜像"></a>使用Alpine作为基础来制作我的容器镜像</h1><h2 id="Docker打包出的镜像超过1G让我不能接受"><a href="#Docker打包出的镜像超过1G让我不能接受" class="headerlink" title="Docker打包出的镜像超过1G让我不能接受"></a>Docker打包出的镜像超过1G让我不能接受</h2><p>在项目刚写完的时候，我使用golang官网的docker镜像作为基础来构建我自己的镜像。这样做可以不用担心环境问题，打包golang构建docker一气呵成固然方便，但当我看到我的镜像有1.2G大的时候猛打了一个寒颤～这是在超出我的所料。<br>作为追求精简的程序员，这种情况不允许发生在我的项目里，于是便有了下面的内容</p>
-<h2 id="Alpine镜像是什么"><a href="#Alpine镜像是什么" class="headerlink" title="Alpine镜像是什么"></a>Alpine镜像是什么</h2><blockquote>
-<p>Alpine 操作系统是一个面向安全的轻型 Linux 发行版。它不同于通常 Linux 发行版，Alpine 采用了 musl libc(注意这里，是个坑) 和 busybox 以减小系统的体积和运行时资源消耗，但功能上比 busybox 又完善的多，因此得到开源社区越来越多的青睐。在保持瘦身的同时，Alpine 还提供了自己的包管理工具 apk，可以通过 <a target="_blank" rel="noopener" href="https://pkgs.alpinelinux.org/packages">https://pkgs.alpinelinux.org/packages</a> 网站上查询包信息，也可以直接通过 apk 命令直接查询和安装各种软件。</p>
-</blockquote>
-<h2 id="将golang编译与docker打包拆分"><a href="#将golang编译与docker打包拆分" class="headerlink" title="将golang编译与docker打包拆分"></a>将golang编译与docker打包拆分</h2><p>为了尽可能的减小docker镜像的体积，我采用了只将golang可执行文件与config文件打包进镜像的方案（大家可以制作自己的打包服务器或者直接使用各种CI&#x2F;CD流水线来帮助构建镜像）。在这之后，我的小而美的docker镜像中只存在两个必要文件<code>app(可执行文件) &amp; config.yaml</code>。而我的镜像也变成了精简的49MB</p>
-<h2 id="制作镜像时遇到的问题"><a href="#制作镜像时遇到的问题" class="headerlink" title="制作镜像时遇到的问题"></a>制作镜像时遇到的问题</h2><p>可是当我使用镜像构建容器的时候，却总是提示</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">➜  project git:(dev) docker run -it --rm 351b4d544b4e<br>exec /app/app: no such file or directory<br></code></pre></td></tr></table></figure>
-<p>开始很没头绪，因为使用了阿里云的流水线服务所以我还特意发了工单去询问（这显得我很白痴）。后来我通过<code>docker save imageID &gt; filename.tar</code>的方式将镜像下载到本地，然后解压去查找对应的文件，发现<code>/app/app</code>可执行文件就好好的躺在它该在的目录。这时候我才把目光转向了我的基础镜像。于是发现并解决了如下问题(部分内容引用自<a target="_blank" rel="noopener" href="https://mozillazg.com/2020/03/use-alpine-image-common-issues.rst.html">使用Alpine作为基础镜像时可能会遇到的常见问题的解决方法</a>)：</p>
-<h2 id="镜像中存在可执行文件但是报错no-such-file-or-directory"><a href="#镜像中存在可执行文件但是报错no-such-file-or-directory" class="headerlink" title="镜像中存在可执行文件但是报错no such file or directory"></a>镜像中存在可执行文件但是报错no such file or directory</h2><p>由于golang构建与docker基于alpine打包分开<br>我的二进制文件是使用动态链接方式编译了一个使用了GLIBC库的程序生成的，但是alpne镜像中没有GLIBC库而是用的MUSL LIBC库，这样就会导致该二进制文件无法被执行。<br>解决方案一般有两种：</p>
-<blockquote>
-<ul>
-<li>改为静态编译</li>
-<li>如果要使用动态链接函数编译的话，不要依赖GLIBC（比如编译Go程序的时候指定CGO_ENABLED&#x3D;0 ）或者在alpine中编译一个依赖MUSL LIBC的版本</li>
-</ul>
-</blockquote>
-<p>追求精简的我选择了第一种<a target="_blank" rel="noopener" href="https://juejin.cn/post/7053450610386468894">静态编译</a><br>同时也实测简单的指定<code>CGO_ENABLED=0</code>并不完全解决问题</p>
-<h2 id="alpine时区问题"><a href="#alpine时区问题" class="headerlink" title="alpine时区问题"></a>alpine时区问题</h2><p>有些使用 alpine 作为基础镜像的 go 程序镜像可能会出现类似下面这样的错误:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">panic: open /usr/local/go/lib/time/zoneinfo.zip: no such file or directory<br><br>Init mysql error: unknown time zone Asia/Shanghai<br></code></pre></td></tr></table></figure>
-<p>常见原因：alpine 基础镜像中没有包含时区信息文件，当代码中有调用类似下面这样的通过名称获取时区信息的时候，就会出现上面的错误。<br>所以需要我们在构建镜像是安装自己需要的时区文件,之后就不会存在时区问题了</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs Dockerfile"><span class="hljs-keyword">FROM</span> alpine:latest<br><br><span class="hljs-keyword">WORKDIR</span><span class="language-bash"> /app</span><br><br><span class="hljs-keyword">ENV</span> TZ Asia/Shanghai<br><span class="hljs-keyword">RUN</span><span class="language-bash"> apk update &amp;&amp; apk add tzdata</span><br><span class="hljs-keyword">RUN</span><span class="language-bash"> <span class="hljs-built_in">cp</span> /usr/share/zoneinfo/<span class="hljs-variable">$&#123;TZ&#125;</span> /etc/localtime \</span><br><span class="language-bash">    &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$&#123;TZ&#125;</span> &gt; /etc/timezone</span><br>...<br></code></pre></td></tr></table></figure>
-
-<p>以上，解决了我这次项目中的问题。</p>
-<p>本来还想写一下关于golang静态编译的问题，但发现我还没有真正搞明白，所以先贴个链接吧，以后再写：<a target="_blank" rel="noopener" href="https://juejin.cn/post/7053450610386468894">https://juejin.cn/post/7053450610386468894</a></p>
-
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="https://mangk.github.io/2022/09/27/%E4%BD%BF%E7%94%A8alpine%E6%9E%84%E5%BB%BAdocker%E9%95%9C%E5%83%8F/" data-id="cle6jw6j4000adffy09rw8anq" data-title="使用alpine构建Docker镜像" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Alpine/" rel="tag">Alpine</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dockerfile/" rel="tag">Dockerfile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Makefile/" rel="tag">Makefile</a></li></ul>
+</div>
+<div id="mobile-main" class="animate__animated  animate__fadeIn">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
+      <a href="/">
+        N+1.
+      </a>
+    </div>
+    <div class="mobile-menu-group" id="mobile-close">
+      <i class="ri-close-line"></i>
+    </div>
 
-    </footer>
   </div>
+
+  <div class="mobile-menu-div">
   
-</article>
-
-
-
+    <a href="/" class="mobile-nav-link">
+      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
+        <span>HOME</span>
+      </div>
+    </a>
   
+    <a href="/archives" class="mobile-nav-link">
+      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
+        <span>ARCHIVES</span>
+      </div>
+    </a>
+  
+    <a href="/about" class="mobile-nav-link">
+      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
+        <span>ABLUT</span>
+      </div>
+    </a>
+  
+  
+  </div>
 
+
+</div>
+
+<div class="body-outer">
+  <div class="body-inner">
+    
+    <section class="intro-section">
+    <div class="intro-content">
+        <div class="intro-title animate__animated  animate__fadeInUp">Hi.I&#39;m White.</div>
+        <div class="intro-sub animate__animated  animate__fadeInUp"><p>A <a target="_blank" rel="noopener" href="https://github.com/FuShaoLei/hexo-theme-white">White</a> theme for <a target="_blank" rel="noopener" href="http://hexo.io/">Hexo</a></p>
+</div>
+        <p class="intro-contact animate__animated  animate__fadeInUp">
+            
+                <a href="https://github.com/MangK" target="_blank">
+                    <i class="ri-github-line"></i>
+                </a>
+            
+                <a href="mailto:mangk.xyz@gmail.com" target="_blank">
+                    <i class="ri-mail-line"></i>
+                </a>
+            
+        </p>
+    </div>
 
 </section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Golang/">Golang</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%99%E7%A8%8B/">教程</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Alpine/" rel="tag">Alpine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dockerfile/" rel="tag">Dockerfile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/" rel="tag">GUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Golang%E5%8C%85/" rel="tag">Golang包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Makefile/" rel="tag">Makefile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MifareClassic/" rel="tag">MifareClassic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NFC/" rel="tag">NFC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ndef/" rel="tag">Ndef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/embed/" rel="tag">embed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gin/" rel="tag">gin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webview/" rel="tag">webview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Alpine/" style="font-size: 10px;">Alpine</a> <a href="/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/tags/Dockerfile/" style="font-size: 10px;">Dockerfile</a> <a href="/tags/GUI/" style="font-size: 15px;">GUI</a> <a href="/tags/Golang/" style="font-size: 20px;">Golang</a> <a href="/tags/Golang%E5%8C%85/" style="font-size: 10px;">Golang包</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/MifareClassic/" style="font-size: 10px;">MifareClassic</a> <a href="/tags/NFC/" style="font-size: 10px;">NFC</a> <a href="/tags/Ndef/" style="font-size: 10px;">Ndef</a> <a href="/tags/Server/" style="font-size: 10px;">Server</a> <a href="/tags/embed/" style="font-size: 15px;">embed</a> <a href="/tags/gin/" style="font-size: 10px;">gin</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webview/" style="font-size: 10px;">webview</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">小程序</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2023/03/09/%E5%85%8D%E8%B4%B9%E6%B3%9B%E5%9F%9F%E5%90%8DSSL%E8%AF%81%E4%B9%A6/">免费泛域名SSL证书</a>
-          </li>
-        
-          <li>
-            <a href="/2022/11/18/NFC%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%AF%BB%E5%86%99/">NFC基础知识与读写</a>
-          </li>
-        
-          <li>
-            <a href="/2022/11/03/Golang-embed%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/">Golang-embed包的使用</a>
-          </li>
-        
-          <li>
-            <a href="/2022/11/03/Golang-GUI%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/">Golang GUI开发总结</a>
-          </li>
-        
-          <li>
-            <a href="/2022/11/03/Golang%E6%9E%84%E5%BB%BA%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F%E4%B9%8Bwebview/">Golang构建桌面程序之webview</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2023 MangK<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
 
 
 
   </div>
+</div>
+
+
+
+<!-- 如果是home模式的话，不在首页就显示footer，如果不是home模式的话 所有都显示footer -->
+
+
+
+
+
+<script src="/js/white.js"></script>
+
+
+
 </body>
 </html>
