@@ -1,123 +1,247 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  
-  
-  <title>docker swarm集群的使用 | N+1</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="序咱们书接上回，我搞定了golang程序的编译，搞定了docker镜像的打包，搞定了流水线。现在项目部署与热更新成了我要面对的问题。受制于公司提供的部署环境（只提供给我一台主机，主机上有docker），我暂时没有k8s集群可用，但又希望能完成基于流水线的自动部署、热更新和不停机更新。所以返现了下面要说的docker swarm 什么是 swarm modeSwarm 是使用 SwarmKit 构建">
-<meta property="og:type" content="article">
-<meta property="og:title" content="docker swarm集群的使用">
-<meta property="og:url" content="https://solobit.cn/2022/09/30/docker-swarm%E9%9B%86%E7%BE%A4%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
-<meta property="og:site_name" content="N+1">
-<meta property="og:description" content="序咱们书接上回，我搞定了golang程序的编译，搞定了docker镜像的打包，搞定了流水线。现在项目部署与热更新成了我要面对的问题。受制于公司提供的部署环境（只提供给我一台主机，主机上有docker），我暂时没有k8s集群可用，但又希望能完成基于流水线的自动部署、热更新和不停机更新。所以返现了下面要说的docker swarm 什么是 swarm modeSwarm 是使用 SwarmKit 构建">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-30T04:48:35.000Z">
-<meta property="article:modified_time" content="2023-08-04T08:48:02.990Z">
-<meta property="article:author" content="MangK">
-<meta property="article:tag" content="Docker">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="N+1" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
     
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+    <title>Docker Swarm集群的使用 | N+1</title>
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+    <meta name="description" content="N+1">
+    <meta name="keywords" content="">
 
-  
     
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
-  
+    <meta property="og:locale" content="zh-CN" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content= "Docker Swarm集群的使用 | N+1"  />
+    <meta property="og:description" content= "N+1" />
+    <meta property="og:url" content="https://solobit.cn/2022/09/30/docker-swarm%E9%9B%86%E7%BE%A4%E7%9A%84%E4%BD%BF%E7%94%A8/index.html" />
+    <meta property="og:site_name" content="" />
+    <meta property="article:author" content="MangK" />
+    <meta property="article:publisher" content="" />
+    <meta property="og:description" content="N+1" />
+    <meta name="twitter:title" content="Docker Swarm集群的使用 | N+1"/>
+    <meta name="twitter:description" content="N+1"/>
+    <script type="application/ld+json">
+        {
+            "description": "N+1",
+            "author": { "@type": "Person", "name": "MangK" },
+            "@type": "BlogPosting",
+            "url": "https://solobit.cn/2022/09/30/docker-swarm%E9%9B%86%E7%BE%A4%E7%9A%84%E4%BD%BF%E7%94%A8/index.html",
+            "publisher": {
+            "@type": "Organization",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://solobit.cnundefined"
+            },
+            "name": "MangK"
+            },
+            "headline": "Docker Swarm集群的使用 | N+1",
+            "datePublished": "2022-09-30T04:48:35.000Z",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://solobit.cn/2022/09/30/docker-swarm%E9%9B%86%E7%BE%A4%E7%9A%84%E4%BD%BF%E7%94%A8/index.html"
+            },
+            "@context": "http://schema.org"
+        }
+    </script>
+
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1654266144177.css">
+
+
+    
+<link rel="stylesheet" href="/dist/custom.css?v=1654266144177.css">
+
+
+    <script>
+        window.isPost = true
+        window.aomori = {
+            
+            
+            
+        }
+        window.aomori_logo_typed_animated = true
+        window.aomori_search_algolia = false
+
+    </script>
+
 <meta name="generator" content="Hexo 6.3.0"></head>
 
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">N+1</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://solobit.cn"></form>
-      </div>
-    </div>
-  </div>
-</header>
 
-      <div class="outer">
-        <section id="main"><article id="post-docker-swarm集群的使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/09/30/docker-swarm%E9%9B%86%E7%BE%A4%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2022-09-30T04:48:35.000Z" itemprop="datePublished">2022-09-30</time>
-</a>
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-inner">
+                
+                    <div id="typed-strings" style="display:none">
+                        <p>N+1</p>
+                    </div>
+                    <a class="header-type-title" id="typed" href="/"></a>
+                
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+                <a href="/">首页</a>
+                
+                <a href="/archives">文章</a>
+                
+                <a href="/about">关于</a>
+                
+            </div>
+            <div class="header-menu-social">
+                
+    <a class="social" target="_blank" href="https://github.com/mangk">
+        <ion-icon name="logo-github"></ion-icon>
+    </a>
+
+    <a class="social" target="_blank" href="mailto:mangk.l@qq.com">
+        <ion-icon name="mail-outline"></ion-icon>
+    </a>
+
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                    <a href="/">首页</a>
+                    
+                    <a href="/archives">文章</a>
+                    
+                    <a href="/about">关于</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="post">
+    <article id="post-clo8gy8oa000bz2fybtfebodj" class="article article-type-post" itemscope
+    itemprop="blogPost">
+
+    <div class="article-inner">
+
         
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
   
-    <h1 class="p-name article-title" itemprop="headline name">
-      docker swarm集群的使用
+    <h1 class="article-title" itemprop="name">
+      Docker Swarm集群的使用
     </h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>咱们书接<a href="/2022/09/27/%E4%BD%BF%E7%94%A8alpine%E6%9E%84%E5%BB%BAdocker%E9%95%9C%E5%83%8F/">上回</a>，我搞定了golang程序的编译，搞定了docker镜像的打包，搞定了流水线。现在项目部署与热更新成了我要面对的问题。<br>受制于公司提供的部署环境（只提供给我一台主机，主机上有docker），我暂时没有k8s集群可用，但又希望能完成基于流水线的自动部署、热更新和不停机更新。所以返现了下面要说的<code>docker swarm</code></p>
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2022-09-30T04:48:35.000Z" itemprop="datePublished">2022-09-30</time>
+</div>
+
+            
+
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+            </div>
+            
+
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>咱们书接<a href="/2022/09/27/%E4%BD%BF%E7%94%A8alpine%E6%9E%84%E5%BB%BAdocker%E9%95%9C%E5%83%8F/">上回</a>，我搞定了golang程序的编译，搞定了docker镜像的打包，搞定了流水线。现在项目部署与热更新成了我要面对的问题。<br>受制于公司提供的部署环境（只提供给我一台主机，主机上有docker），我暂时没有k8s集群可用，但又希望能完成基于流水线的自动部署、热更新和不停机更新。所以返现了下面要说的<code>docker swarm</code></p>
 <h2 id="什么是-swarm-mode"><a href="#什么是-swarm-mode" class="headerlink" title="什么是 swarm mode"></a>什么是 swarm mode</h2><p>Swarm 是使用 SwarmKit 构建的 Docker 引擎内置（原生）的集群管理和编排工具。具体内容可以参见：<a target="_blank" rel="noopener" href="https://yeasy.gitbook.io/docker_practice/swarm_mode/overview">基本概念</a>，这里不再详细解释。</p>
-<h2 id="集群创建"><a href="#集群创建" class="headerlink" title="集群创建"></a>集群创建</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker swarm init</span><br><span class="line">Swarm initialized: current node (dxn1zf6l61qsb1josjja83ngz) is now a manager.</span><br><span class="line"></span><br><span class="line">To add a worker to this swarm, run the following command:</span><br><span class="line"></span><br><span class="line">    docker swarm join \</span><br><span class="line">    --token SWMTKN-1-49nj1cmql0jkz5s954yi3oex3nedyz0fb0xx14ie39trti4wxv-8vxv8rssmk743ojnwacrr2e7c \</span><br><span class="line">    192.168.99.100:2377</span><br><span class="line"></span><br><span class="line">To add a manager to this swarm, run &#x27;docker swarm join-token manager&#x27; and follow the instructions.</span><br></pre></td></tr></table></figure>
+<h2 id="集群创建"><a href="#集群创建" class="headerlink" title="集群创建"></a>集群创建</h2><pre class="line-numbers language-none"><code class="language-none">docker swarm init
+Swarm initialized: current node (dxn1zf6l61qsb1josjja83ngz) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join \
+    --token SWMTKN-1-49nj1cmql0jkz5s954yi3oex3nedyz0fb0xx14ie39trti4wxv-8vxv8rssmk743ojnwacrr2e7c \
+    192.168.99.100:2377
+
+To add a manager to this swarm, run &#39;docker swarm join-token manager&#39; and follow the instructions.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>使用<code>docker swarm init</code>命令，创建一个集群，本机的docker就会变成一个单节点的集群。</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://solobit.cn/2022/09/30/docker-swarm%E9%9B%86%E7%BE%A4%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="cllxg01j400067afy3w7x86rt" data-title="docker swarm集群的使用" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
+        </div>
 
-    </footer>
+    </div>
+
+    
+
+    
+
+    
+
+    
+  <div class="article-copyright hairline">
+    <p>
+      本作品采用  <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议 (CC BY-NC-ND 4.0)</a> 进行许可。
+    </p>
   </div>
   
+
     
-<nav id="article-nav">
+
+    
+<nav class="article-nav">
   
     <a href="/2022/11/03/Golang%E6%9E%84%E5%BB%BA%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F%E4%B9%8Bwebview/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-caption">下一篇</div>
       <div class="article-nav-title">
         
           Golang构建桌面程序之webview
@@ -127,131 +251,133 @@
   
   
     <a href="/2022/09/27/%E4%BD%BF%E7%94%A8alpine%E6%9E%84%E5%BB%BAdocker%E9%95%9C%E5%83%8F/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-caption">上一篇</div>
       <div class="article-nav-title">使用alpine构建Docker镜像</div>
     </a>
   
 </nav>
 
-  
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=Docker Swarm集群的使用 - N+1&url=https%3A%2F%2Fsolobit.cn%2F2022%2F09%2F30%2Fdocker-swarm%25E9%259B%2586%25E7%25BE%25A4%25E7%259A%2584%25E4%25BD%25BF%25E7%2594%25A8%2F">
+            <ion-icon name="logo-twitter"></ion-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=Docker Swarm集群的使用 - N+1&u=https%3A%2F%2Fsolobit.cn%2F2022%2F09%2F30%2Fdocker-swarm%25E9%259B%2586%25E7%25BE%25A4%25E7%259A%2584%25E4%25BD%25BF%25E7%2594%25A8%2F">
+            <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=Docker Swarm集群的使用 - N+1&url=https://solobit.cn/2022/09/30/docker-swarm%E9%9B%86%E7%BE%A4%E7%9A%84%E4%BD%BF%E7%94%A8/&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
+
 </article>
 
 
-</section>
-        
-          <aside id="sidebar">
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+                </section>
+            </section>
+
+            
+            <aside class="sidebar ">
+                
+
+
+<div class="widget" id="widget">
     
+      
   <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-cate">
+    <div class="widget-title"><span>Categories</span></div>
+    <div class="widget-inner">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Golang/">Golang</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%99%E7%A8%8B/">教程</a></li></ul>
     </div>
   </div>
 
 
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
       <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Alpine/" rel="tag">Alpine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dockerfile/" rel="tag">Dockerfile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/" rel="tag">GUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Golang%E5%8C%85/" rel="tag">Golang包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Makefile/" rel="tag">Makefile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MifareClassic/" rel="tag">MifareClassic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NFC/" rel="tag">NFC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ndef/" rel="tag">Ndef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/embed/" rel="tag">embed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gin/" rel="tag">gin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webview/" rel="tag">webview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
     </div>
   </div>
 
 
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Alpine/" style="font-size: 10px;">Alpine</a> <a href="/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/tags/Dockerfile/" style="font-size: 10px;">Dockerfile</a> <a href="/tags/GUI/" style="font-size: 15px;">GUI</a> <a href="/tags/Golang/" style="font-size: 20px;">Golang</a> <a href="/tags/Golang%E5%8C%85/" style="font-size: 10px;">Golang包</a> <a href="/tags/Makefile/" style="font-size: 10px;">Makefile</a> <a href="/tags/MifareClassic/" style="font-size: 10px;">MifareClassic</a> <a href="/tags/NFC/" style="font-size: 10px;">NFC</a> <a href="/tags/Ndef/" style="font-size: 10px;">Ndef</a> <a href="/tags/Server/" style="font-size: 10px;">Server</a> <a href="/tags/embed/" style="font-size: 15px;">embed</a> <a href="/tags/gin/" style="font-size: 10px;">gin</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webview/" style="font-size: 10px;">webview</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">小程序</a>
-    </div>
-  </div>
+</div>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a></li></ul>
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+            
+        </div>
     </div>
-  </div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2023/03/09/%E5%85%8D%E8%B4%B9%E6%B3%9B%E5%9F%9F%E5%90%8DSSL%E8%AF%81%E4%B9%A6/">免费泛域名SSL证书</a>
-          </li>
-        
-          <li>
-            <a href="/2022/11/18/NFC%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%AF%BB%E5%86%99/">NFC基础知识与读写</a>
-          </li>
-        
-          <li>
-            <a href="/2022/11/03/Golang-embed%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/">Golang-embed包的使用</a>
-          </li>
-        
-          <li>
-            <a href="/2022/11/03/Golang-GUI%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/">Golang GUI开发总结</a>
-          </li>
-        
-          <li>
-            <a href="/2022/11/03/Golang%E6%9E%84%E5%BB%BA%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F%E4%B9%8Bwebview/">Golang构建桌面程序之webview</a>
-          </li>
-        
-      </ul>
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
     </div>
-  </div>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2023 MangK<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    <!-- Please do not remove this -->
+    <!-- 开源不易，请勿删除 -->
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            N+1 &copy; 2023<br>
+            Powered By Hexo · Theme By <a href="https://linhong.me/" target="_blank">Aomori</a> · <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Github</a>
+        </div>
     </div>
-  </div>
+
 </footer>
 
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@6.0.2/dist/ionicons/ionicons.esm.js"></script>
 
 
 
 
 
-  </div>
+
+<script src="/dist/build.js?1654266144177.js"></script>
+
+
+<script src="/dist/custom.js?1654266144177.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
+
 </html>
