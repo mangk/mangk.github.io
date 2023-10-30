@@ -163,7 +163,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-clo8hsn5c000i7xfy4efn3agk" class="article article-type-post" itemscope
+    <article id="post-clocacm6v000ij5fy68sidkgt" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -205,31 +205,31 @@
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <h1 id="使用acme-sh配置泛域名证书"><a href="#使用acme-sh配置泛域名证书" class="headerlink" title="使用acme.sh配置泛域名证书"></a>使用acme.sh配置泛域名证书</h1><h2 id="安装acme-sh"><a href="#安装acme-sh" class="headerlink" title="安装acme.sh"></a>安装acme.sh</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre class="line-numbers language-none"><code class="language-none">curl https:&#x2F;&#x2F;get.acme.sh | sh -s email&#x3D;youEmail@email.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+            <h1 id="使用acme-sh配置泛域名证书"><a href="#使用acme-sh配置泛域名证书" class="headerlink" title="使用acme.sh配置泛域名证书"></a>使用acme.sh配置泛域名证书</h1><h2 id="安装acme-sh"><a href="#安装acme-sh" class="headerlink" title="安装acme.sh"></a>安装acme.sh</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> https://get.acme.sh <span class="token operator">|</span> <span class="token function">sh</span> <span class="token parameter variable">-s</span> <span class="token assign-left variable">email</span><span class="token operator">=</span>youEmail@email.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="生成泛域名证书："><a href="#生成泛域名证书：" class="headerlink" title="生成泛域名证书："></a>生成泛域名证书：</h3><ol>
-<li>执行命令<pre class="line-numbers language-none"><code class="language-none">acme.sh --issue --dns -d *.youDomin.com \
+<li>执行命令<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">acme.sh <span class="token parameter variable">--issue</span> <span class="token parameter variable">--dns</span> <span class="token parameter variable">-d</span> *.youDomin.com <span class="token punctuation">\</span>
  --yes-I-know-dns-manual-mode-enough-go-ahead-please<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
-<li>这时候会输出生成如下内容<pre class="line-numbers language-none"><code class="language-none">Using CA: https:&#x2F;&#x2F;acme.zerossl.com&#x2F;v2&#x2F;DV90
-Single domain&#x3D;&#39;*.youDomin.com&#39;
-Getting domain auth token for each domain
-Getting webroot for domain&#x3D;&#39;*.youDomin.com&#39;
+<li>这时候会输出生成如下内容<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Using CA: https://acme.zerossl.com/v2/DV90
+Single <span class="token assign-left variable">domain</span><span class="token operator">=</span><span class="token string">'*.youDomin.com'</span>
+Getting domain auth token <span class="token keyword">for</span> each domain
+Getting webroot <span class="token keyword">for</span> <span class="token assign-left variable">domain</span><span class="token operator">=</span><span class="token string">'*.youDomin.com'</span>
 Add the following TXT record:
-Domain: &#39;_acme-challenge.youDomin.com&#39;
-TXT value: &#39;fdlkajflajfkdlJFKLDSAJFLKJDSLKJF&#39;
+Domain: <span class="token string">'_acme-challenge.youDomin.com'</span>
+TXT value: <span class="token string">'fdlkajflajfkdlJFKLDSAJFLKJDSLKJF'</span>
 Please be aware that you prepend _acme-challenge. before your domain
 so the resulting subdomain will be: _acme-challenge.youDomin.com
-Please add the TXT records to the domains, and re-run with --renew.
-Please add &#39;--debug&#39; or &#39;--log&#39; to check more details.
-See: https:&#x2F;&#x2F;github.com&#x2F;acmesh-official&#x2F;acme.sh&#x2F;wiki&#x2F;How-to-debug-acme.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+Please <span class="token function">add</span> the TXT records to the domains, and re-run with --renew.
+Please <span class="token function">add</span> <span class="token string">'--debug'</span> or <span class="token string">'--log'</span> to check <span class="token function">more</span> details.
+See: https://github.com/acmesh-official/acme.sh/wiki/How-to-debug-acme.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 去域名管理后台添加dns记录<code>_acme-challenge.youDomin.com</code>类型为<code>TXT</code>值为<code>fdlkajflajfkdlJFKLDSAJFLKJDSLKJF</code></li>
-<li>执行命令<pre class="line-numbers language-none"><code class="language-none">acme.sh --renew -d *.youDomin.com --yes-I-know-dns-manual-mode-enough-go-ahead-please<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<li>执行命令<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">acme.sh <span class="token parameter variable">--renew</span> <span class="token parameter variable">-d</span> *.youDomin.com --yes-I-know-dns-manual-mode-enough-go-ahead-please<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 完成验证。<br>此时证书会被下载到服务器上</li>
 </ol>
 <h3 id="配置nginx自动替换证书"><a href="#配置nginx自动替换证书" class="headerlink" title="配置nginx自动替换证书"></a>配置nginx自动替换证书</h3><p>创建目录及文件<code>/etc/nginx/conf.d/ssl/key.pem</code>,<code>/etc/nginx/conf.d/ssl/cert.pem</code></p>
-<pre class="line-numbers language-none"><code class="language-none">acme.sh --install-cert -d *.youDomin.com \
---key-file       &#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;ssl&#x2F;key.pem  \
---fullchain-file &#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;ssl&#x2F;cert.pem \
---reloadcmd     &quot;nginx -s reload&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">acme.sh --install-cert <span class="token parameter variable">-d</span> *.youDomin.com <span class="token punctuation">\</span>
+--key-file       /etc/nginx/conf.d/ssl/key.pem  <span class="token punctuation">\</span>
+--fullchain-file /etc/nginx/conf.d/ssl/cert.pem <span class="token punctuation">\</span>
+<span class="token parameter variable">--reloadcmd</span>     <span class="token string">"nginx -s reload"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>此时证书会被复制到<code>/etc/nginx/conf.d/ssl/</code>目录下。并自动通过命令<code>nginx -s reload</code>重启nginx。所以这里都要替换成自己真是的。</p>
 <h3 id="这样就算完成了，acme-sh创建的定时任务会自动续期证书并更新证书重启nginx"><a href="#这样就算完成了，acme-sh创建的定时任务会自动续期证书并更新证书重启nginx" class="headerlink" title="这样就算完成了，acme.sh创建的定时任务会自动续期证书并更新证书重启nginx"></a>这样就算完成了，acme.sh创建的定时任务会自动续期证书并更新证书重启nginx</h3><h3 id="参见：https-github-com-acmesh-official-acme-sh"><a href="#参见：https-github-com-acmesh-official-acme-sh" class="headerlink" title="参见：https://github.com/acmesh-official/acme.sh"></a>参见：<a target="_blank" rel="noopener" href="https://github.com/acmesh-official/acme.sh">https://github.com/acmesh-official/acme.sh</a></h3>
         </div>

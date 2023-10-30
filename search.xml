@@ -158,22 +158,22 @@
 <p><a href="https://jia.je/hardware/2020/05/10/mifare-classic-ndef/">杰哥的{运维,编程,调板子}小笔记-MIFARE Classic 上配置 NDEF</a></p>
 </blockquote>
 <h3 id="Sector-amp-Block-标签的内存布局"><a href="#Sector-amp-Block-标签的内存布局" class="headerlink" title="Sector&amp;Block 标签的内存布局"></a>Sector&amp;Block 标签的内存布局</h3><p>在 MIFARE Classic 中，有 Sector 和 Block 的概念，每个 Sector 有若干个 Block，其中最后一个 Block 是特殊的（称为 Sector Trailer），保存了这个 Sector 的一些信息：Key A、Access Bits、GPB 和 Key B。对于 Classic 4K，首先是 32 个有 4 blocks 的 sector，（M1卡）整体的内存布局大概是：</p>
-<pre class="line-numbers language-none"><code class="language-none">Sector 0:
-	Block 0 (出厂时写入了标签ID，厂商信息等，不可修改)
-	Block 1
-	Block 2
-	Block 3(Sector Trailer)
-Sector 1:
-	Block 4
-	Block 5
-	Block 6
-	Block 7(Sector Trailer)
-...
-Sector 15:
-	Block 60
-	Block 61
-	Block 62
-	Block 63(Sector Trailer)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Sector <span class="token number">0</span>:
+	Block <span class="token number">0</span> <span class="token punctuation">(</span>出厂时写入了标签ID，厂商信息等，不可修改<span class="token punctuation">)</span>
+	Block <span class="token number">1</span>
+	Block <span class="token number">2</span>
+	Block <span class="token number">3</span><span class="token punctuation">(</span>Sector Trailer<span class="token punctuation">)</span>
+Sector <span class="token number">1</span>:
+	Block <span class="token number">4</span>
+	Block <span class="token number">5</span>
+	Block <span class="token number">6</span>
+	Block <span class="token number">7</span><span class="token punctuation">(</span>Sector Trailer<span class="token punctuation">)</span>
+<span class="token punctuation">..</span>.
+Sector <span class="token number">15</span>:
+	Block <span class="token number">60</span>
+	Block <span class="token number">61</span>
+	Block <span class="token number">62</span>
+	Block <span class="token number">63</span><span class="token punctuation">(</span>Sector Trailer<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Sector Trailer 的布局如下：</p>
 <table>
 <thead>
@@ -247,22 +247,22 @@ Sector 15:
 <p>第二个字节是 Info Byte，用处不大，见 MAD 的文档。</p>
 <p>之后每两个字节对应一个 Sector 的 AID（Application ID），比如 Block 1 的 2-3 字节对应 Sector 1 的 AID，Block 1 的 4-5 字节对应 Sector 2 的 AID，最后 Block 2 的 14-15 字节对应 Sector 15 的 AID。NDEF 的 AID 就是 0x03 0xE1。当软件发现这里的 AID 是 0x03E1 的时候，它就会去相应的 Sector 去读取 NDEF 信息。</p>
 <p>省流助手：[0x14 0x01]可以理解为标记扇区0为索引，[0x03 0xE1]可以理解为标记扇区为NDEF消息储存空间。所以一个将NDEF信息记录在Mifare Classic标签上的数据形式大概类似这样：</p>
-<pre class="line-numbers language-none"><code class="language-none">Sector0
-    Block0 E7 CA C1 B3 5F 08 04 00 02 78 B1 F6 C9 6F FA 1D（芯片ID与厂商信息）
-    Block1 14 01 03 E1 03 E1 03 E1 03 E1 03 E1 03 E1 03 E1（相当于所有扇区的类型索引）
-    Block2 03 E1 03 E1 03 E1 03 E1 03 E1 03 E1 03 E1 14 01（相当于所有扇区的类型索引）
-    Block3 A0 A1 A2 A3 A4 A5 78 77 88 C1 B0 B1 B2 B3 B4 B5（密钥A：A0A1A2A3A4A5 控制位：787788[表示扇区0密钥A只读，密钥B读写] C1[C1实际上不参与控制，可以用来替换成其他的内容保存用户数据] 密钥B：B0B1B2B3B4B5）
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Sector0
+    Block0 E7 CA C1 B3 5F 08 04 00 02 <span class="token number">78</span> B1 F6 C9 6F FA 1D（芯片ID与厂商信息）
+    Block1 <span class="token number">14</span> 01 03 E1 03 E1 03 E1 03 E1 03 E1 03 E1 03 E1（相当于所有扇区的类型索引）
+    Block2 03 E1 03 E1 03 E1 03 E1 03 E1 03 E1 03 E1 <span class="token number">14</span> 01（相当于所有扇区的类型索引）
+    Block3 A0 A1 A2 A3 A4 A5 <span class="token number">78</span> <span class="token number">77</span> <span class="token number">88</span> C1 B0 B1 B2 B3 B4 B5（密钥A：A0A1A2A3A4A5 控制位：787788<span class="token punctuation">[</span>表示扇区0密钥A只读，密钥B读写<span class="token punctuation">]</span> C1<span class="token punctuation">[</span>C1实际上不参与控制，可以用来替换成其他的内容保存用户数据<span class="token punctuation">]</span> 密钥B：B0B1B2B3B4B5）
 Sector1
-    Block0 48 45 4C 4C 4F 59 4F 52 4C 44 00 00 00 00 00 00（自定义的数据内容，翻译：HELLOWORLD）
+    Block0 <span class="token number">48</span> <span class="token number">45</span> 4C 4C 4F <span class="token number">59</span> 4F <span class="token number">52</span> 4C <span class="token number">44</span> 00 00 00 00 00 00（自定义的数据内容，翻译：HELLOWORLD）
     Block1 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00（没有填写内容）
     Block2 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00（没有填写内容）
-    Block3 FF FF FF FF FF FF 78 77 88 C1 FF FF FF FF FF FF（密钥与控制位）
+    Block3 FF FF FF FF FF FF <span class="token number">78</span> <span class="token number">77</span> <span class="token number">88</span> C1 FF FF FF FF FF FF（密钥与控制位）
 Sector2
     Block0
     Block1
     Block2
     Block3
-......
+<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
 
 Sector16
     Block0
@@ -290,16 +290,16 @@ Sector16
     <url>/2022/09/30/docker-swarm%E9%9B%86%E7%BE%A4%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>咱们书接<a href="/2022/09/27/%E4%BD%BF%E7%94%A8alpine%E6%9E%84%E5%BB%BAdocker%E9%95%9C%E5%83%8F/">上回</a>，我搞定了golang程序的编译，搞定了docker镜像的打包，搞定了流水线。现在项目部署与热更新成了我要面对的问题。<br>受制于公司提供的部署环境（只提供给我一台主机，主机上有docker），我暂时没有k8s集群可用，但又希望能完成基于流水线的自动部署、热更新和不停机更新。所以返现了下面要说的<code>docker swarm</code></p>
 <h2 id="什么是-swarm-mode"><a href="#什么是-swarm-mode" class="headerlink" title="什么是 swarm mode"></a>什么是 swarm mode</h2><p>Swarm 是使用 SwarmKit 构建的 Docker 引擎内置（原生）的集群管理和编排工具。具体内容可以参见：<a href="https://yeasy.gitbook.io/docker_practice/swarm_mode/overview">基本概念</a>，这里不再详细解释。</p>
-<h2 id="集群创建"><a href="#集群创建" class="headerlink" title="集群创建"></a>集群创建</h2><pre class="line-numbers language-none"><code class="language-none">docker swarm init
-Swarm initialized: current node (dxn1zf6l61qsb1josjja83ngz) is now a manager.
+<h2 id="集群创建"><a href="#集群创建" class="headerlink" title="集群创建"></a>集群创建</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> swarm init
+Swarm initialized: current <span class="token function">node</span> <span class="token punctuation">(</span>dxn1zf6l61qsb1josjja83ngz<span class="token punctuation">)</span> is now a manager.
 
-To add a worker to this swarm, run the following command:
+To <span class="token function">add</span> a worker to this swarm, run the following command:
 
-    docker swarm join \
-    --token SWMTKN-1-49nj1cmql0jkz5s954yi3oex3nedyz0fb0xx14ie39trti4wxv-8vxv8rssmk743ojnwacrr2e7c \
-    192.168.99.100:2377
+    <span class="token function">docker</span> swarm <span class="token function">join</span> <span class="token punctuation">\</span>
+    <span class="token parameter variable">--token</span> SWMTKN-1-49nj1cmql0jkz5s954yi3oex3nedyz0fb0xx14ie39trti4wxv-8vxv8rssmk743ojnwacrr2e7c <span class="token punctuation">\</span>
+    <span class="token number">192.168</span>.99.100:2377
 
-To add a manager to this swarm, run &#39;docker swarm join-token manager&#39; and follow the instructions.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+To <span class="token function">add</span> a manager to this swarm, run <span class="token string">'docker swarm join-token manager'</span> and follow the instructions.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>使用<code>docker swarm init</code>命令，创建一个集群，本机的docker就会变成一个单节点的集群。</p>
 ]]></content>
       <tags>
@@ -342,23 +342,24 @@ BUILD_DOCKER_IMAGE<span class="token operator">=</span>0
 <span class="token keyword">endif</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="Dockerfile不能访问父级目录"><a href="#Dockerfile不能访问父级目录" class="headerlink" title="Dockerfile不能访问父级目录"></a>Dockerfile不能访问父级目录</h1><p>项目汇中我使用Dockerfile作为构架docker镜像的基础。通过<code>docker build -t image_name .</code>可以将内容打包成本地的docker镜像。但是鉴于我现有的项目目录结构使得<code>COPY</code>无法找到对应的文件，在查阅<code>docker build</code>命令后，发现可以通过<code>-f</code>选项来执行相关目录。</p>
-<pre class="line-numbers language-我的目录结构" data-language="我的目录结构"><code class="language-我的目录结构">.
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">我的目录结构
+<span class="token builtin class-name">.</span>
 ├── README.md
 ├── cmd
 │   └── main.go
 ├── conf
-│   ├── ...
+│   ├── <span class="token punctuation">..</span>.
 ├── deploy
 │   └── Dockerfile
 ├── http
-│   ├── ...
+│   ├── <span class="token punctuation">..</span>.
 ├── model
-│   ├── ...
+│   ├── <span class="token punctuation">..</span>.
 ├── makefile
 ├── go.mod
 ├── go.sum
 ├── config.yaml
-├── sample.config.yaml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+├── sample.config.yaml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="解决Dockerbuild目录可见性问题（使用-f-选项）"><a href="#解决Dockerbuild目录可见性问题（使用-f-选项）" class="headerlink" title="解决Dockerbuild目录可见性问题（使用 -f 选项）"></a>解决Dockerbuild目录可见性问题（使用 -f 选项）</h2><p>docker与dockerfile的关系这里不再阐述。这只单独介绍docker build<code>-f</code>选项的使用</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">➜  project git:<span class="token punctuation">(</span>dev<span class="token punctuation">)</span> <span class="token function">docker</span> build <span class="token parameter variable">-h</span>   
 Flag shorthand <span class="token parameter variable">-h</span> has been deprecated, please use <span class="token parameter variable">--help</span>
@@ -375,7 +376,7 @@ Options:
   -f, <span class="token parameter variable">--file</span> string             Name of the Dockerfile <span class="token punctuation">(</span>Default is <span class="token string">'PATH/Dockerfile'</span><span class="token punctuation">)</span>
   <span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>平时使用docker build一般是在根目录存在Dockerfile，构建的时候Dockerfile会在当前目录寻找需要的文件，但是在我的目录结构中，Dockerfile被放到了deploy目录下，导致我在根目录执行docker build会找不到file，但是cd到deploy目录里又会导致Dockerfile找不到根目录的文件。所以这里<code>-f</code>选项就可以使用了：</p>
-<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker">docker build -t name:tag  -f deploy/Dockerfile ./deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> build <span class="token parameter variable">-t</span> name:tag  <span class="token parameter variable">-f</span> deploy/Dockerfile ./deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><code>-f</code>选项指定了Dockerfile所在的目录，最后的<code>./deploy</code>是docker构建使用的根目录</p>
 <h2 id="向Dockerfile中传递编译参数"><a href="#向Dockerfile中传递编译参数" class="headerlink" title="向Dockerfile中传递编译参数"></a>向Dockerfile中传递编译参数</h2><p>通过<code>-build-arg &#123;ARG_NAME&#125;=&#123;value&#125;</code>可以传递参数，那么在dockerfile中，通过<code>arg</code> 定义的变量可以接收到传递到参数<code>ARG ARG_NAME=hello</code></p>
 <h1 id="使用Alpine作为基础来制作我的容器镜像"><a href="#使用Alpine作为基础来制作我的容器镜像" class="headerlink" title="使用Alpine作为基础来制作我的容器镜像"></a>使用Alpine作为基础来制作我的容器镜像</h1><h2 id="Docker打包出的镜像超过1G让我不能接受"><a href="#Docker打包出的镜像超过1G让我不能接受" class="headerlink" title="Docker打包出的镜像超过1G让我不能接受"></a>Docker打包出的镜像超过1G让我不能接受</h2><p>在项目刚写完的时候，我使用golang官网的docker镜像作为基础来构建我自己的镜像。这样做可以不用担心环境问题，打包golang构建docker一气呵成固然方便，但当我看到我的镜像有1.2G大的时候猛打了一个寒颤～这是在超出我的所料。<br>作为追求精简的程序员，这种情况不允许发生在我的项目里，于是便有了下面的内容</p>
@@ -400,15 +401,15 @@ Options:
 
 Init mysql error: unknown <span class="token function">time</span> zone Asia/Shanghai<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>常见原因：alpine 基础镜像中没有包含时区信息文件，当代码中有调用类似下面这样的通过名称获取时区信息的时候，就会出现上面的错误。<br>所以需要我们在构建镜像是安装自己需要的时区文件,之后就不会存在时区问题了</p>
-<pre class="line-numbers language-Dockerfile" data-language="Dockerfile"><code class="language-Dockerfile">FROM alpine:latest
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">FROM alpine:latest
 
-WORKDIR &#x2F;app
+WORKDIR /app
 
-ENV TZ Asia&#x2F;Shanghai
-RUN apk update &amp;&amp; apk add tzdata
-RUN cp &#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;$&#123;TZ&#125; &#x2F;etc&#x2F;localtime \
-    &amp;&amp; echo $&#123;TZ&#125; &gt; &#x2F;etc&#x2F;timezone
-...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ENV TZ Asia/Shanghai
+RUN apk update <span class="token operator">&amp;&amp;</span> apk <span class="token function">add</span> tzdata
+RUN <span class="token function">cp</span> /usr/share/zoneinfo/<span class="token variable">$&#123;TZ&#125;</span> /etc/localtime <span class="token punctuation">\</span>
+    <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">echo</span> <span class="token variable">$&#123;TZ&#125;</span> <span class="token operator">></span> /etc/timezone
+<span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>以上，解决了我这次项目中的问题。</p>
 <p>本来还想写一下关于golang静态编译的问题，但发现我还没有真正搞明白，所以先贴个链接吧，以后再写：<a href="https://juejin.cn/post/7053450610386468894">https://juejin.cn/post/7053450610386468894</a></p>
@@ -427,31 +428,31 @@ RUN cp &#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;$&#123;TZ&#125; &#x2F;etc&#x2F;lo
   <entry>
     <title>免费泛域名SSL证书</title>
     <url>/2023/03/09/%E5%85%8D%E8%B4%B9%E6%B3%9B%E5%9F%9F%E5%90%8DSSL%E8%AF%81%E4%B9%A6/</url>
-    <content><![CDATA[<h1 id="使用acme-sh配置泛域名证书"><a href="#使用acme-sh配置泛域名证书" class="headerlink" title="使用acme.sh配置泛域名证书"></a>使用acme.sh配置泛域名证书</h1><h2 id="安装acme-sh"><a href="#安装acme-sh" class="headerlink" title="安装acme.sh"></a>安装acme.sh</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre class="line-numbers language-none"><code class="language-none">curl https:&#x2F;&#x2F;get.acme.sh | sh -s email&#x3D;youEmail@email.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+    <content><![CDATA[<h1 id="使用acme-sh配置泛域名证书"><a href="#使用acme-sh配置泛域名证书" class="headerlink" title="使用acme.sh配置泛域名证书"></a>使用acme.sh配置泛域名证书</h1><h2 id="安装acme-sh"><a href="#安装acme-sh" class="headerlink" title="安装acme.sh"></a>安装acme.sh</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> https://get.acme.sh <span class="token operator">|</span> <span class="token function">sh</span> <span class="token parameter variable">-s</span> <span class="token assign-left variable">email</span><span class="token operator">=</span>youEmail@email.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="生成泛域名证书："><a href="#生成泛域名证书：" class="headerlink" title="生成泛域名证书："></a>生成泛域名证书：</h3><ol>
-<li>执行命令<pre class="line-numbers language-none"><code class="language-none">acme.sh --issue --dns -d *.youDomin.com \
+<li>执行命令<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">acme.sh <span class="token parameter variable">--issue</span> <span class="token parameter variable">--dns</span> <span class="token parameter variable">-d</span> *.youDomin.com <span class="token punctuation">\</span>
  --yes-I-know-dns-manual-mode-enough-go-ahead-please<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
-<li>这时候会输出生成如下内容<pre class="line-numbers language-none"><code class="language-none">Using CA: https:&#x2F;&#x2F;acme.zerossl.com&#x2F;v2&#x2F;DV90
-Single domain&#x3D;&#39;*.youDomin.com&#39;
-Getting domain auth token for each domain
-Getting webroot for domain&#x3D;&#39;*.youDomin.com&#39;
+<li>这时候会输出生成如下内容<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Using CA: https://acme.zerossl.com/v2/DV90
+Single <span class="token assign-left variable">domain</span><span class="token operator">=</span><span class="token string">'*.youDomin.com'</span>
+Getting domain auth token <span class="token keyword">for</span> each domain
+Getting webroot <span class="token keyword">for</span> <span class="token assign-left variable">domain</span><span class="token operator">=</span><span class="token string">'*.youDomin.com'</span>
 Add the following TXT record:
-Domain: &#39;_acme-challenge.youDomin.com&#39;
-TXT value: &#39;fdlkajflajfkdlJFKLDSAJFLKJDSLKJF&#39;
+Domain: <span class="token string">'_acme-challenge.youDomin.com'</span>
+TXT value: <span class="token string">'fdlkajflajfkdlJFKLDSAJFLKJDSLKJF'</span>
 Please be aware that you prepend _acme-challenge. before your domain
 so the resulting subdomain will be: _acme-challenge.youDomin.com
-Please add the TXT records to the domains, and re-run with --renew.
-Please add &#39;--debug&#39; or &#39;--log&#39; to check more details.
-See: https:&#x2F;&#x2F;github.com&#x2F;acmesh-official&#x2F;acme.sh&#x2F;wiki&#x2F;How-to-debug-acme.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+Please <span class="token function">add</span> the TXT records to the domains, and re-run with --renew.
+Please <span class="token function">add</span> <span class="token string">'--debug'</span> or <span class="token string">'--log'</span> to check <span class="token function">more</span> details.
+See: https://github.com/acmesh-official/acme.sh/wiki/How-to-debug-acme.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 去域名管理后台添加dns记录<code>_acme-challenge.youDomin.com</code>类型为<code>TXT</code>值为<code>fdlkajflajfkdlJFKLDSAJFLKJDSLKJF</code></li>
-<li>执行命令<pre class="line-numbers language-none"><code class="language-none">acme.sh --renew -d *.youDomin.com --yes-I-know-dns-manual-mode-enough-go-ahead-please<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<li>执行命令<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">acme.sh <span class="token parameter variable">--renew</span> <span class="token parameter variable">-d</span> *.youDomin.com --yes-I-know-dns-manual-mode-enough-go-ahead-please<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 完成验证。<br>此时证书会被下载到服务器上</li>
 </ol>
 <h3 id="配置nginx自动替换证书"><a href="#配置nginx自动替换证书" class="headerlink" title="配置nginx自动替换证书"></a>配置nginx自动替换证书</h3><p>创建目录及文件<code>/etc/nginx/conf.d/ssl/key.pem</code>,<code>/etc/nginx/conf.d/ssl/cert.pem</code></p>
-<pre class="line-numbers language-none"><code class="language-none">acme.sh --install-cert -d *.youDomin.com \
---key-file       &#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;ssl&#x2F;key.pem  \
---fullchain-file &#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;ssl&#x2F;cert.pem \
---reloadcmd     &quot;nginx -s reload&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">acme.sh --install-cert <span class="token parameter variable">-d</span> *.youDomin.com <span class="token punctuation">\</span>
+--key-file       /etc/nginx/conf.d/ssl/key.pem  <span class="token punctuation">\</span>
+--fullchain-file /etc/nginx/conf.d/ssl/cert.pem <span class="token punctuation">\</span>
+<span class="token parameter variable">--reloadcmd</span>     <span class="token string">"nginx -s reload"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>此时证书会被复制到<code>/etc/nginx/conf.d/ssl/</code>目录下。并自动通过命令<code>nginx -s reload</code>重启nginx。所以这里都要替换成自己真是的。</p>
 <h3 id="这样就算完成了，acme-sh创建的定时任务会自动续期证书并更新证书重启nginx"><a href="#这样就算完成了，acme-sh创建的定时任务会自动续期证书并更新证书重启nginx" class="headerlink" title="这样就算完成了，acme.sh创建的定时任务会自动续期证书并更新证书重启nginx"></a>这样就算完成了，acme.sh创建的定时任务会自动续期证书并更新证书重启nginx</h3><h3 id="参见：https-github-com-acmesh-official-acme-sh"><a href="#参见：https-github-com-acmesh-official-acme-sh" class="headerlink" title="参见：https://github.com/acmesh-official/acme.sh"></a>参见：<a href="https://github.com/acmesh-official/acme.sh">https://github.com/acmesh-official/acme.sh</a></h3>]]></content>
       <tags>

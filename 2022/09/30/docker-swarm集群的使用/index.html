@@ -163,7 +163,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-clo8hsn5c000d7xfy5c73f4fs" class="article article-type-post" itemscope
+    <article id="post-clocacm6u000dj5fyaoih6oes" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -207,16 +207,16 @@
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
             <h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>咱们书接<a href="/2022/09/27/%E4%BD%BF%E7%94%A8alpine%E6%9E%84%E5%BB%BAdocker%E9%95%9C%E5%83%8F/">上回</a>，我搞定了golang程序的编译，搞定了docker镜像的打包，搞定了流水线。现在项目部署与热更新成了我要面对的问题。<br>受制于公司提供的部署环境（只提供给我一台主机，主机上有docker），我暂时没有k8s集群可用，但又希望能完成基于流水线的自动部署、热更新和不停机更新。所以返现了下面要说的<code>docker swarm</code></p>
 <h2 id="什么是-swarm-mode"><a href="#什么是-swarm-mode" class="headerlink" title="什么是 swarm mode"></a>什么是 swarm mode</h2><p>Swarm 是使用 SwarmKit 构建的 Docker 引擎内置（原生）的集群管理和编排工具。具体内容可以参见：<a target="_blank" rel="noopener" href="https://yeasy.gitbook.io/docker_practice/swarm_mode/overview">基本概念</a>，这里不再详细解释。</p>
-<h2 id="集群创建"><a href="#集群创建" class="headerlink" title="集群创建"></a>集群创建</h2><pre class="line-numbers language-none"><code class="language-none">docker swarm init
-Swarm initialized: current node (dxn1zf6l61qsb1josjja83ngz) is now a manager.
+<h2 id="集群创建"><a href="#集群创建" class="headerlink" title="集群创建"></a>集群创建</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> swarm init
+Swarm initialized: current <span class="token function">node</span> <span class="token punctuation">(</span>dxn1zf6l61qsb1josjja83ngz<span class="token punctuation">)</span> is now a manager.
 
-To add a worker to this swarm, run the following command:
+To <span class="token function">add</span> a worker to this swarm, run the following command:
 
-    docker swarm join \
-    --token SWMTKN-1-49nj1cmql0jkz5s954yi3oex3nedyz0fb0xx14ie39trti4wxv-8vxv8rssmk743ojnwacrr2e7c \
-    192.168.99.100:2377
+    <span class="token function">docker</span> swarm <span class="token function">join</span> <span class="token punctuation">\</span>
+    <span class="token parameter variable">--token</span> SWMTKN-1-49nj1cmql0jkz5s954yi3oex3nedyz0fb0xx14ie39trti4wxv-8vxv8rssmk743ojnwacrr2e7c <span class="token punctuation">\</span>
+    <span class="token number">192.168</span>.99.100:2377
 
-To add a manager to this swarm, run &#39;docker swarm join-token manager&#39; and follow the instructions.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+To <span class="token function">add</span> a manager to this swarm, run <span class="token string">'docker swarm join-token manager'</span> and follow the instructions.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>使用<code>docker swarm init</code>命令，创建一个集群，本机的docker就会变成一个单节点的集群。</p>
 
         </div>

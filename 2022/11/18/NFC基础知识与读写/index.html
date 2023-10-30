@@ -163,7 +163,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-clo8hsn5b000b7xfy06wq1j1e" class="article article-type-post" itemscope
+    <article id="post-clocacm6u000bj5fy10zghqd3" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -313,22 +313,22 @@
 <p><a target="_blank" rel="noopener" href="https://jia.je/hardware/2020/05/10/mifare-classic-ndef/">杰哥的{运维,编程,调板子}小笔记-MIFARE Classic 上配置 NDEF</a></p>
 </blockquote>
 <h3 id="Sector-amp-Block-标签的内存布局"><a href="#Sector-amp-Block-标签的内存布局" class="headerlink" title="Sector&amp;Block 标签的内存布局"></a>Sector&amp;Block 标签的内存布局</h3><p>在 MIFARE Classic 中，有 Sector 和 Block 的概念，每个 Sector 有若干个 Block，其中最后一个 Block 是特殊的（称为 Sector Trailer），保存了这个 Sector 的一些信息：Key A、Access Bits、GPB 和 Key B。对于 Classic 4K，首先是 32 个有 4 blocks 的 sector，（M1卡）整体的内存布局大概是：</p>
-<pre class="line-numbers language-none"><code class="language-none">Sector 0:
-	Block 0 (出厂时写入了标签ID，厂商信息等，不可修改)
-	Block 1
-	Block 2
-	Block 3(Sector Trailer)
-Sector 1:
-	Block 4
-	Block 5
-	Block 6
-	Block 7(Sector Trailer)
-...
-Sector 15:
-	Block 60
-	Block 61
-	Block 62
-	Block 63(Sector Trailer)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Sector <span class="token number">0</span>:
+	Block <span class="token number">0</span> <span class="token punctuation">(</span>出厂时写入了标签ID，厂商信息等，不可修改<span class="token punctuation">)</span>
+	Block <span class="token number">1</span>
+	Block <span class="token number">2</span>
+	Block <span class="token number">3</span><span class="token punctuation">(</span>Sector Trailer<span class="token punctuation">)</span>
+Sector <span class="token number">1</span>:
+	Block <span class="token number">4</span>
+	Block <span class="token number">5</span>
+	Block <span class="token number">6</span>
+	Block <span class="token number">7</span><span class="token punctuation">(</span>Sector Trailer<span class="token punctuation">)</span>
+<span class="token punctuation">..</span>.
+Sector <span class="token number">15</span>:
+	Block <span class="token number">60</span>
+	Block <span class="token number">61</span>
+	Block <span class="token number">62</span>
+	Block <span class="token number">63</span><span class="token punctuation">(</span>Sector Trailer<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Sector Trailer 的布局如下：</p>
 <table>
 <thead>
@@ -402,22 +402,22 @@ Sector 15:
 <p>第二个字节是 Info Byte，用处不大，见 MAD 的文档。</p>
 <p>之后每两个字节对应一个 Sector 的 AID（Application ID），比如 Block 1 的 2-3 字节对应 Sector 1 的 AID，Block 1 的 4-5 字节对应 Sector 2 的 AID，最后 Block 2 的 14-15 字节对应 Sector 15 的 AID。NDEF 的 AID 就是 0x03 0xE1。当软件发现这里的 AID 是 0x03E1 的时候，它就会去相应的 Sector 去读取 NDEF 信息。</p>
 <p>省流助手：[0x14 0x01]可以理解为标记扇区0为索引，[0x03 0xE1]可以理解为标记扇区为NDEF消息储存空间。所以一个将NDEF信息记录在Mifare Classic标签上的数据形式大概类似这样：</p>
-<pre class="line-numbers language-none"><code class="language-none">Sector0
-    Block0 E7 CA C1 B3 5F 08 04 00 02 78 B1 F6 C9 6F FA 1D（芯片ID与厂商信息）
-    Block1 14 01 03 E1 03 E1 03 E1 03 E1 03 E1 03 E1 03 E1（相当于所有扇区的类型索引）
-    Block2 03 E1 03 E1 03 E1 03 E1 03 E1 03 E1 03 E1 14 01（相当于所有扇区的类型索引）
-    Block3 A0 A1 A2 A3 A4 A5 78 77 88 C1 B0 B1 B2 B3 B4 B5（密钥A：A0A1A2A3A4A5 控制位：787788[表示扇区0密钥A只读，密钥B读写] C1[C1实际上不参与控制，可以用来替换成其他的内容保存用户数据] 密钥B：B0B1B2B3B4B5）
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Sector0
+    Block0 E7 CA C1 B3 5F 08 04 00 02 <span class="token number">78</span> B1 F6 C9 6F FA 1D（芯片ID与厂商信息）
+    Block1 <span class="token number">14</span> 01 03 E1 03 E1 03 E1 03 E1 03 E1 03 E1 03 E1（相当于所有扇区的类型索引）
+    Block2 03 E1 03 E1 03 E1 03 E1 03 E1 03 E1 03 E1 <span class="token number">14</span> 01（相当于所有扇区的类型索引）
+    Block3 A0 A1 A2 A3 A4 A5 <span class="token number">78</span> <span class="token number">77</span> <span class="token number">88</span> C1 B0 B1 B2 B3 B4 B5（密钥A：A0A1A2A3A4A5 控制位：787788<span class="token punctuation">[</span>表示扇区0密钥A只读，密钥B读写<span class="token punctuation">]</span> C1<span class="token punctuation">[</span>C1实际上不参与控制，可以用来替换成其他的内容保存用户数据<span class="token punctuation">]</span> 密钥B：B0B1B2B3B4B5）
 Sector1
-    Block0 48 45 4C 4C 4F 59 4F 52 4C 44 00 00 00 00 00 00（自定义的数据内容，翻译：HELLOWORLD）
+    Block0 <span class="token number">48</span> <span class="token number">45</span> 4C 4C 4F <span class="token number">59</span> 4F <span class="token number">52</span> 4C <span class="token number">44</span> 00 00 00 00 00 00（自定义的数据内容，翻译：HELLOWORLD）
     Block1 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00（没有填写内容）
     Block2 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00（没有填写内容）
-    Block3 FF FF FF FF FF FF 78 77 88 C1 FF FF FF FF FF FF（密钥与控制位）
+    Block3 FF FF FF FF FF FF <span class="token number">78</span> <span class="token number">77</span> <span class="token number">88</span> C1 FF FF FF FF FF FF（密钥与控制位）
 Sector2
     Block0
     Block1
     Block2
     Block3
-......
+<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
 
 Sector16
     Block0
