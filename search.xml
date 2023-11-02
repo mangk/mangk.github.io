@@ -30,7 +30,6 @@
       </categories>
       <tags>
         <tag>Golang</tag>
-        <tag>Golang包</tag>
         <tag>embed</tag>
       </tags>
   </entry>
@@ -276,13 +275,12 @@ Sector16
 </blockquote>
 ]]></content>
       <categories>
-        <category>教程</category>
+        <category>小程序</category>
       </categories>
       <tags>
         <tag>NFC</tag>
         <tag>Ndef</tag>
         <tag>MifareClassic</tag>
-        <tag>小程序</tag>
       </tags>
   </entry>
   <entry>
@@ -302,9 +300,9 @@ To <span class="token function">add</span> a worker to this swarm, run the follo
 To <span class="token function">add</span> a manager to this swarm, run <span class="token string">'docker swarm join-token manager'</span> and follow the instructions.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>使用<code>docker swarm init</code>命令，创建一个集群，本机的docker就会变成一个单节点的集群。</p>
 ]]></content>
-      <tags>
-        <tag>Docker</tag>
-      </tags>
+      <categories>
+        <category>Docker</category>
+      </categories>
   </entry>
   <entry>
     <title>使用alpine构建Docker镜像</title>
@@ -415,15 +413,53 @@ RUN <span class="token function">cp</span> /usr/share/zoneinfo/<span class="toke
 <p>本来还想写一下关于golang静态编译的问题，但发现我还没有真正搞明白，所以先贴个链接吧，以后再写：<a href="https://juejin.cn/post/7053450610386468894">https://juejin.cn/post/7053450610386468894</a></p>
 ]]></content>
       <categories>
-        <category>教程</category>
+        <category>Docker</category>
       </categories>
       <tags>
         <tag>Golang</tag>
-        <tag>Docker</tag>
-        <tag>Alpine</tag>
-        <tag>Makefile</tag>
-        <tag>Dockerfile</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>小程序wx.navigateTo中的闭包</title>
+    <url>/2023/11/02/%E5%B0%8F%E7%A8%8B%E5%BA%8Fwx-navigateTo%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85/</url>
+    <content><![CDATA[<h1 id="序"><a href="#序" class="headerlink" title="序"></a>序</h1><p>最近的开发任务中处理了这样一个情况:</p>
+<ol>
+<li>打开小程序是从onLoad判断是否携带参数</li>
+<li>判断用户是否登录</li>
+<li>如果没有登录需要跳转登录并跳转回来</li>
+<li>回来后继续使用(1)中携带的参数处理问题</li>
+</ol>
+<p>听起来没有什么难点，我们只需要设置<code>app.globleData</code>就可以很轻松的完成需求。但是我思考问题的点在于登录环节：如果每次有类似的需求都要去改动登录页的代码，那会让登录页面的<code>if</code>条件越来越多，代码可读性也会持续下降。</p>
+<p>于是我开始查找对登录页面修改最少的解决方案：</p>
+<ul>
+<li>使用<code>wx.router</code>来完成需求，但是我不是专业写前端的，而是被拉来救急的，让我去看文档写代码是在太慢了。而且如果整个小程序都改用<code>wx.router</code>，这其中的修改成本也太高了。</li>
+<li>使用<code>app.globleData</code>前面说了，也不太可取</li>
+<li>最终我发现了<code>wx.navigateTo</code>中的<code>success</code>可以处理我的问题。</li>
+</ul>
+<p>所以在这里将我的思路写下来做记录，也提供给有同样需求的人参考。</p>
+<h1 id="还是要用到app-globleData"><a href="#还是要用到app-globleData" class="headerlink" title="还是要用到app.globleData"></a>还是要用到<code>app.globleData</code></h1><p>是的，我的方式中还是要对<code>app.globleData</code>进行设置，但是约定了统一的格式，无论在哪个页面。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> pages <span class="token operator">=</span> <span class="token function">getCurrentPages</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">var</span> curPage <span class="token operator">=</span> pages<span class="token punctuation">[</span>pages<span class="token punctuation">.</span>length<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+app<span class="token punctuation">.</span>globleData<span class="token punctuation">.</span>navigateInfo <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">url</span><span class="token operator">:</span><span class="token string">"/"</span><span class="token operator">+</span>curPage<span class="token punctuation">.</span>route<span class="token punctuation">,</span>
+    <span class="token function-variable function">success</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">var</span> page <span class="token operator">=</span> <span class="token function">getCurrentPages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>page <span class="token operator">==</span> <span class="token keyword">undefined</span> <span class="token operator">||</span> page <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        page<span class="token punctuation">.</span><span class="token function">selectComponent</span><span class="token punctuation">(</span><span class="token string">"#coupon"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">runCoupon</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在登录页面只需要判断<code>app.globleData.navigateInfo</code>这一个参数，并在完成登录操作后直接将<code>navigateInfo对象</code>交给<code>wx.navigateTo</code>方法执行就跳回了原来的页面。</p>
+<p>这里面神奇的点在于可以直接执行组件中的某个方法</p>
+]]></content>
+      <categories>
+        <category>小程序</category>
+      </categories>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/1970/01/01/%E6%9C%80%E8%BF%91%E6%9B%B4%E6%96%B0/</url>
+    <content><![CDATA[<h1 id="解锁新的传送锚点-🥳"><a href="#解锁新的传送锚点-🥳" class="headerlink" title="解锁新的传送锚点 🥳"></a>解锁新的传送锚点 🥳</h1>]]></content>
   </entry>
   <entry>
     <title>免费泛域名SSL证书</title>
@@ -458,10 +494,5 @@ See: https://github.com/acmesh-official/acme.sh/wiki/How-to-debug-acme.sh<span a
       <tags>
         <tag>Server</tag>
       </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/1970/01/01/%E6%9C%80%E8%BF%91%E6%9B%B4%E6%96%B0/</url>
-    <content><![CDATA[<h1 id="解锁新的传送锚点-🥳"><a href="#解锁新的传送锚点-🥳" class="headerlink" title="解锁新的传送锚点 🥳"></a>解锁新的传送锚点 🥳</h1>]]></content>
   </entry>
 </search>

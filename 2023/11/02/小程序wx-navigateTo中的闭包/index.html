@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     
-    <title>免费泛域名SSL证书 | N+1</title>
+    <title>小程序wx.navigateTo中的闭包 | N+1</title>
 
     <meta name="description" content="N+1">
     <meta name="keywords" content="">
@@ -15,21 +15,21 @@
 
     <meta property="og:locale" content="zh-CN" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content= "免费泛域名SSL证书 | N+1"  />
+    <meta property="og:title" content= "小程序wx.navigateTo中的闭包 | N+1"  />
     <meta property="og:description" content= "N+1" />
-    <meta property="og:url" content="https://solobit.cn/2023/03/09/%E5%85%8D%E8%B4%B9%E6%B3%9B%E5%9F%9F%E5%90%8DSSL%E8%AF%81%E4%B9%A6/index.html" />
+    <meta property="og:url" content="https://solobit.cn/2023/11/02/%E5%B0%8F%E7%A8%8B%E5%BA%8Fwx-navigateTo%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85/index.html" />
     <meta property="og:site_name" content="" />
     <meta property="article:author" content="MangK" />
     <meta property="article:publisher" content="" />
     <meta property="og:description" content="N+1" />
-    <meta name="twitter:title" content="免费泛域名SSL证书 | N+1"/>
+    <meta name="twitter:title" content="小程序wx.navigateTo中的闭包 | N+1"/>
     <meta name="twitter:description" content="N+1"/>
     <script type="application/ld+json">
         {
             "description": "N+1",
             "author": { "@type": "Person", "name": "MangK" },
             "@type": "BlogPosting",
-            "url": "https://solobit.cn/2023/03/09/%E5%85%8D%E8%B4%B9%E6%B3%9B%E5%9F%9F%E5%90%8DSSL%E8%AF%81%E4%B9%A6/index.html",
+            "url": "https://solobit.cn/2023/11/02/%E5%B0%8F%E7%A8%8B%E5%BA%8Fwx-navigateTo%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85/index.html",
             "publisher": {
             "@type": "Organization",
             "logo": {
@@ -38,11 +38,11 @@
             },
             "name": "MangK"
             },
-            "headline": "免费泛域名SSL证书 | N+1",
-            "datePublished": "2023-03-09T11:20:34.000Z",
+            "headline": "小程序wx.navigateTo中的闭包 | N+1",
+            "datePublished": "2023-11-02T10:04:38.000Z",
             "mainEntityOfPage": {
                 "@type": "WebPage",
-                "@id": "https://solobit.cn/2023/03/09/%E5%85%8D%E8%B4%B9%E6%B3%9B%E5%9F%9F%E5%90%8DSSL%E8%AF%81%E4%B9%A6/index.html"
+                "@id": "https://solobit.cn/2023/11/02/%E5%B0%8F%E7%A8%8B%E5%BA%8Fwx-navigateTo%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85/index.html"
             },
             "@context": "http://schema.org"
         }
@@ -165,7 +165,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-cloh1lyf9001rxpfy23v63qjv" class="article article-type-post" itemscope
+    <article id="post-cloh1lyf3000ixpfybcgk1fm7" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -181,7 +181,7 @@
             
   
     <h1 class="article-title" itemprop="name">
-      免费泛域名SSL证书
+      小程序wx.navigateTo中的闭包
     </h1>
   
 
@@ -191,15 +191,15 @@
         <div class="article-more-info article-more-info-post hairline">
 
             <div class="article-date">
-  <time datetime="2023-03-09T11:20:34.000Z" itemprop="datePublished">2023-03-09</time>
+  <time datetime="2023-11-02T10:04:38.000Z" itemprop="datePublished">2023-11-02</time>
 </div>
 
             
-
-            
-            <div class="article-tag">
-                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server/" rel="tag">Server</a></li></ul>
+            <div class="article-category">
+                <a class="article-category-link" href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">小程序</a>
             </div>
+            
+
             
 
             
@@ -207,33 +207,36 @@
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <h1 id="使用acme-sh配置泛域名证书"><a href="#使用acme-sh配置泛域名证书" class="headerlink" title="使用acme.sh配置泛域名证书"></a>使用acme.sh配置泛域名证书</h1><h2 id="安装acme-sh"><a href="#安装acme-sh" class="headerlink" title="安装acme.sh"></a>安装acme.sh</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> https://get.acme.sh <span class="token operator">|</span> <span class="token function">sh</span> <span class="token parameter variable">-s</span> <span class="token assign-left variable">email</span><span class="token operator">=</span>youEmail@email.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="生成泛域名证书："><a href="#生成泛域名证书：" class="headerlink" title="生成泛域名证书："></a>生成泛域名证书：</h3><ol>
-<li>执行命令<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">acme.sh <span class="token parameter variable">--issue</span> <span class="token parameter variable">--dns</span> <span class="token parameter variable">-d</span> *.youDomin.com <span class="token punctuation">\</span>
- --yes-I-know-dns-manual-mode-enough-go-ahead-please<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
-<li>这时候会输出生成如下内容<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Using CA: https://acme.zerossl.com/v2/DV90
-Single <span class="token assign-left variable">domain</span><span class="token operator">=</span><span class="token string">'*.youDomin.com'</span>
-Getting domain auth token <span class="token keyword">for</span> each domain
-Getting webroot <span class="token keyword">for</span> <span class="token assign-left variable">domain</span><span class="token operator">=</span><span class="token string">'*.youDomin.com'</span>
-Add the following TXT record:
-Domain: <span class="token string">'_acme-challenge.youDomin.com'</span>
-TXT value: <span class="token string">'fdlkajflajfkdlJFKLDSAJFLKJDSLKJF'</span>
-Please be aware that you prepend _acme-challenge. before your domain
-so the resulting subdomain will be: _acme-challenge.youDomin.com
-Please <span class="token function">add</span> the TXT records to the domains, and re-run with --renew.
-Please <span class="token function">add</span> <span class="token string">'--debug'</span> or <span class="token string">'--log'</span> to check <span class="token function">more</span> details.
-See: https://github.com/acmesh-official/acme.sh/wiki/How-to-debug-acme.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-去域名管理后台添加dns记录<code>_acme-challenge.youDomin.com</code>类型为<code>TXT</code>值为<code>fdlkajflajfkdlJFKLDSAJFLKJDSLKJF</code></li>
-<li>执行命令<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">acme.sh <span class="token parameter variable">--renew</span> <span class="token parameter variable">-d</span> *.youDomin.com --yes-I-know-dns-manual-mode-enough-go-ahead-please<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-完成验证。<br>此时证书会被下载到服务器上</li>
+            <h1 id="序"><a href="#序" class="headerlink" title="序"></a>序</h1><p>最近的开发任务中处理了这样一个情况:</p>
+<ol>
+<li>打开小程序是从onLoad判断是否携带参数</li>
+<li>判断用户是否登录</li>
+<li>如果没有登录需要跳转登录并跳转回来</li>
+<li>回来后继续使用(1)中携带的参数处理问题</li>
 </ol>
-<h3 id="配置nginx自动替换证书"><a href="#配置nginx自动替换证书" class="headerlink" title="配置nginx自动替换证书"></a>配置nginx自动替换证书</h3><p>创建目录及文件<code>/etc/nginx/conf.d/ssl/key.pem</code>,<code>/etc/nginx/conf.d/ssl/cert.pem</code></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">acme.sh --install-cert <span class="token parameter variable">-d</span> *.youDomin.com <span class="token punctuation">\</span>
---key-file       /etc/nginx/conf.d/ssl/key.pem  <span class="token punctuation">\</span>
---fullchain-file /etc/nginx/conf.d/ssl/cert.pem <span class="token punctuation">\</span>
-<span class="token parameter variable">--reloadcmd</span>     <span class="token string">"nginx -s reload"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>此时证书会被复制到<code>/etc/nginx/conf.d/ssl/</code>目录下。并自动通过命令<code>nginx -s reload</code>重启nginx。所以这里都要替换成自己真是的。</p>
-<h3 id="这样就算完成了，acme-sh创建的定时任务会自动续期证书并更新证书重启nginx"><a href="#这样就算完成了，acme-sh创建的定时任务会自动续期证书并更新证书重启nginx" class="headerlink" title="这样就算完成了，acme.sh创建的定时任务会自动续期证书并更新证书重启nginx"></a>这样就算完成了，acme.sh创建的定时任务会自动续期证书并更新证书重启nginx</h3><h3 id="参见：https-github-com-acmesh-official-acme-sh"><a href="#参见：https-github-com-acmesh-official-acme-sh" class="headerlink" title="参见：https://github.com/acmesh-official/acme.sh"></a>参见：<a target="_blank" rel="noopener" href="https://github.com/acmesh-official/acme.sh">https://github.com/acmesh-official/acme.sh</a></h3>
+<p>听起来没有什么难点，我们只需要设置<code>app.globleData</code>就可以很轻松的完成需求。但是我思考问题的点在于登录环节：如果每次有类似的需求都要去改动登录页的代码，那会让登录页面的<code>if</code>条件越来越多，代码可读性也会持续下降。</p>
+<p>于是我开始查找对登录页面修改最少的解决方案：</p>
+<ul>
+<li>使用<code>wx.router</code>来完成需求，但是我不是专业写前端的，而是被拉来救急的，让我去看文档写代码是在太慢了。而且如果整个小程序都改用<code>wx.router</code>，这其中的修改成本也太高了。</li>
+<li>使用<code>app.globleData</code>前面说了，也不太可取</li>
+<li>最终我发现了<code>wx.navigateTo</code>中的<code>success</code>可以处理我的问题。</li>
+</ul>
+<p>所以在这里将我的思路写下来做记录，也提供给有同样需求的人参考。</p>
+<h1 id="还是要用到app-globleData"><a href="#还是要用到app-globleData" class="headerlink" title="还是要用到app.globleData"></a>还是要用到<code>app.globleData</code></h1><p>是的，我的方式中还是要对<code>app.globleData</code>进行设置，但是约定了统一的格式，无论在哪个页面。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> pages <span class="token operator">=</span> <span class="token function">getCurrentPages</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">var</span> curPage <span class="token operator">=</span> pages<span class="token punctuation">[</span>pages<span class="token punctuation">.</span>length<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+app<span class="token punctuation">.</span>globleData<span class="token punctuation">.</span>navigateInfo <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">url</span><span class="token operator">:</span><span class="token string">"/"</span><span class="token operator">+</span>curPage<span class="token punctuation">.</span>route<span class="token punctuation">,</span>
+    <span class="token function-variable function">success</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">var</span> page <span class="token operator">=</span> <span class="token function">getCurrentPages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>page <span class="token operator">==</span> <span class="token keyword">undefined</span> <span class="token operator">||</span> page <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        page<span class="token punctuation">.</span><span class="token function">selectComponent</span><span class="token punctuation">(</span><span class="token string">"#coupon"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">runCoupon</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在登录页面只需要判断<code>app.globleData.navigateInfo</code>这一个参数，并在完成登录操作后直接将<code>navigateInfo对象</code>交给<code>wx.navigateTo</code>方法执行就跳回了原来的页面。</p>
+<p>这里面神奇的点在于可以直接执行组件中的某个方法</p>
+
         </div>
 
     </div>
@@ -257,19 +260,10 @@ See: https://github.com/acmesh-official/acme.sh/wiki/How-to-debug-acme.sh<span a
     
 <nav class="article-nav">
   
-    <a href="/2023/11/02/%E5%B0%8F%E7%A8%8B%E5%BA%8Fwx-navigateTo%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85/" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-caption">下一篇</div>
-      <div class="article-nav-title">
-        
-          小程序wx.navigateTo中的闭包
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/11/18/NFC%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%AF%BB%E5%86%99/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/03/09/%E5%85%8D%E8%B4%B9%E6%B3%9B%E5%9F%9F%E5%90%8DSSL%E8%AF%81%E4%B9%A6/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-caption">上一篇</div>
-      <div class="article-nav-title">NFC基础知识与读写</div>
+      <div class="article-nav-title">免费泛域名SSL证书</div>
     </a>
   
 </nav>
@@ -278,15 +272,15 @@ See: https://github.com/acmesh-official/acme.sh/wiki/How-to-debug-acme.sh<span a
     <section class="share">
         <div class="share-title">分享</div>
         <a class="share-item" target="_blank"
-            href="https://twitter.com/share?text=免费泛域名SSL证书 - N+1&url=https%3A%2F%2Fsolobit.cn%2F2023%2F03%2F09%2F%25E5%2585%258D%25E8%25B4%25B9%25E6%25B3%259B%25E5%259F%259F%25E5%2590%258DSSL%25E8%25AF%2581%25E4%25B9%25A6%2F">
+            href="https://twitter.com/share?text=小程序wx.navigateTo中的闭包 - N+1&url=https%3A%2F%2Fsolobit.cn%2F2023%2F11%2F02%2F%25E5%25B0%258F%25E7%25A8%258B%25E5%25BA%258Fwx-navigateTo%25E4%25B8%25AD%25E7%259A%2584%25E9%2597%25AD%25E5%258C%2585%2F">
             <ion-icon name="logo-twitter"></ion-icon>
         </a>
         <a class="share-item" target="_blank"
-            href="https://www.facebook.com/sharer.php?title=免费泛域名SSL证书 - N+1&u=https%3A%2F%2Fsolobit.cn%2F2023%2F03%2F09%2F%25E5%2585%258D%25E8%25B4%25B9%25E6%25B3%259B%25E5%259F%259F%25E5%2590%258DSSL%25E8%25AF%2581%25E4%25B9%25A6%2F">
+            href="https://www.facebook.com/sharer.php?title=小程序wx.navigateTo中的闭包 - N+1&u=https%3A%2F%2Fsolobit.cn%2F2023%2F11%2F02%2F%25E5%25B0%258F%25E7%25A8%258B%25E5%25BA%258Fwx-navigateTo%25E4%25B8%25AD%25E7%259A%2584%25E9%2597%25AD%25E5%258C%2585%2F">
             <ion-icon name="logo-facebook"></ion-icon>
         </a>
         <!-- <a class="share-item" target="_blank"
-            href="https://service.weibo.com/share/share.php?title=免费泛域名SSL证书 - N+1&url=https://solobit.cn/2023/03/09/%E5%85%8D%E8%B4%B9%E6%B3%9B%E5%9F%9F%E5%90%8DSSL%E8%AF%81%E4%B9%A6/&pic=">
+            href="https://service.weibo.com/share/share.php?title=小程序wx.navigateTo中的闭包 - N+1&url=https://solobit.cn/2023/11/02/%E5%B0%8F%E7%A8%8B%E5%BA%8Fwx-navigateTo%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85/&pic=">
             <div class="n-icon n-icon-weibo"></div>
         </a> -->
     </section>
