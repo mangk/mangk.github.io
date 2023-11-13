@@ -195,7 +195,7 @@
   
     
       <article
-id="post-小程序wx-navigateTo中的闭包"
+id="post-R01从今天开始"
 class="article article-type-post"
 >
 
@@ -206,30 +206,11 @@ class="article article-type-post"
 
     <div class="article-body">
     <header class="article-title">
-        <a href="/2023/11/02/%E5%B0%8F%E7%A8%8B%E5%BA%8Fwx-navigateTo%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85/">小程序wx.navigateTo中的闭包</a>
+        <a href="/2023/11/13/R01%E4%BB%8E%E4%BB%8A%E5%A4%A9%E5%BC%80%E5%A7%8B/">R01今天在开始</a>
     </header>
     <div class="article-entry post-inner-html">
         
-        <h1 id="序"><a href="#序" class="headerlink" title="序"></a>序</h1><p>最近的开发任务中处理了这样一个情况:</p>
-<ol>
-<li>打开小程序是从onLoad判断是否携带参数</li>
-<li>判断用户是否登录</li>
-<li>如果没有登录需要跳转登录并跳转回来</li>
-<li>回来后继续使用(1)中携带的参数处理问题</li>
-</ol>
-<p>听起来没有什么难点，我们只需要设置<code>app.globleData</code>就可以很轻松的完成需求。但是我思考问题的点在于登录环节：如果每次有类似的需求都要去改动登录页的代码，那会让登录页面的<code>if</code>条件越来越多，代码可读性也会持续下降。</p>
-<p>于是我开始查找对登录页面修改最少的解决方案：</p>
-<ul>
-<li>使用<code>wx.router</code>来完成需求，但是我不是专业写前端的，而是被拉来救急的，让我去看文档写代码是在太慢了。而且如果整个小程序都改用<code>wx.router</code>，这其中的修改成本也太高了。</li>
-<li>使用<code>app.globleData</code>前面说了，也不太可取</li>
-<li>最终我发现了<code>wx.navigateTo</code>中的<code>success</code>可以处理我的问题。</li>
-</ul>
-<p>所以在这里将我的思路写下来做记录，也提供给有同样需求的人参考。</p>
-<h1 id="还是要用到app-globleData"><a href="#还是要用到app-globleData" class="headerlink" title="还是要用到app.globleData"></a>还是要用到<code>app.globleData</code></h1><p>是的，我的方式中还是要对<code>app.globleData</code>进行设置，但是约定了统一的格式，无论在哪个页面。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pages = <span class="title function_">getCurrentPages</span>()</span><br><span class="line"><span class="keyword">var</span> curPage = pages[pages.<span class="property">length</span>-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">app.<span class="property">globleData</span>.<span class="property">navigateInfo</span> = &#123;</span><br><span class="line">    <span class="attr">url</span>:<span class="string">&quot;/&quot;</span>+curPage.<span class="property">route</span>,</span><br><span class="line">    <span class="attr">success</span>: <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> page = <span class="title function_">getCurrentPages</span>().<span class="title function_">pop</span>()</span><br><span class="line">        <span class="keyword">if</span> (page == <span class="literal">undefined</span> || page == <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line">        page.<span class="title function_">selectComponent</span>(<span class="string">&quot;#coupon&quot;</span>).<span class="title function_">runCoupon</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在登录页面只需要判断<code>app.globleData.navigateInfo</code>这一个参数，并在完成登录操作后直接将<code>navigateInfo对象</code>交给<code>wx.navigateTo</code>方法执行就跳回了原来的页面。</p>
-<p>这里面神奇的点在于可以直接执行组件中的某个方法</p>
-
+        
         
     </div>
     </div>
@@ -244,13 +225,17 @@ class="article article-type-post"
 <footer class="article-footer">
     <div class="article-more-info">
     <div class="article-date">
-  <time datetime="2023-11-02T10:04:38.000Z" itemprop="datePublished">2023-11-02</time>
+  <time datetime="2023-11-13T07:36:22.000Z" itemprop="datePublished">2023-11-13</time>
 </div>
     
         <div class="article-category">
-        <a class="article-category-link" href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">小程序</a>
+        <a class="article-category-link" href="/categories/Reading/">Reading</a>
         </div>
     
+    
+        <div class="article-tag">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reading/" rel="tag">Reading</a></li></ul>
+        </div>
     
     </div>
 </footer>
@@ -261,7 +246,7 @@ class="article article-type-post"
   
     
       <article
-id="post-免费泛域名SSL证书"
+id="post-C01项目立项"
 class="article article-type-post"
 >
 
@@ -272,22 +257,11 @@ class="article article-type-post"
 
     <div class="article-body">
     <header class="article-title">
-        <a href="/2023/03/09/%E5%85%8D%E8%B4%B9%E6%B3%9B%E5%9F%9F%E5%90%8DSSL%E8%AF%81%E4%B9%A6/">免费泛域名SSL证书</a>
+        <a href="/2023/11/13/C01%E9%A1%B9%E7%9B%AE%E7%AB%8B%E9%A1%B9/">C01项目立项</a>
     </header>
     <div class="article-entry post-inner-html">
         
-        <h1 id="使用acme-sh配置泛域名证书"><a href="#使用acme-sh配置泛域名证书" class="headerlink" title="使用acme.sh配置泛域名证书"></a>使用acme.sh配置泛域名证书</h1><h2 id="安装acme-sh"><a href="#安装acme-sh" class="headerlink" title="安装acme.sh"></a>安装acme.sh</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://get.acme.sh | sh -s email=youEmail@email.com</span><br></pre></td></tr></table></figure>
-<h3 id="生成泛域名证书："><a href="#生成泛域名证书：" class="headerlink" title="生成泛域名证书："></a>生成泛域名证书：</h3><ol>
-<li>执行命令<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --issue --dns -d *.youDomin.com \</span><br><span class="line"> --yes-I-know-dns-manual-mode-enough-go-ahead-please</span><br></pre></td></tr></table></figure></li>
-<li>这时候会输出生成如下内容<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Using CA: https://acme.zerossl.com/v2/DV90</span><br><span class="line">Single domain=&#x27;*.youDomin.com&#x27;</span><br><span class="line">Getting domain auth token for each domain</span><br><span class="line">Getting webroot for domain=&#x27;*.youDomin.com&#x27;</span><br><span class="line">Add the following TXT record:</span><br><span class="line">Domain: &#x27;_acme-challenge.youDomin.com&#x27;</span><br><span class="line">TXT value: &#x27;fdlkajflajfkdlJFKLDSAJFLKJDSLKJF&#x27;</span><br><span class="line">Please be aware that you prepend _acme-challenge. before your domain</span><br><span class="line">so the resulting subdomain will be: _acme-challenge.youDomin.com</span><br><span class="line">Please add the TXT records to the domains, and re-run with --renew.</span><br><span class="line">Please add &#x27;--debug&#x27; or &#x27;--log&#x27; to check more details.</span><br><span class="line">See: https://github.com/acmesh-official/acme.sh/wiki/How-to-debug-acme.sh</span><br></pre></td></tr></table></figure>
-去域名管理后台添加dns记录<code>_acme-challenge.youDomin.com</code>类型为<code>TXT</code>值为<code>fdlkajflajfkdlJFKLDSAJFLKJDSLKJF</code></li>
-<li>执行命令<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --renew -d *.youDomin.com --yes-I-know-dns-manual-mode-enough-go-ahead-please</span><br></pre></td></tr></table></figure>
-完成验证。<br>此时证书会被下载到服务器上</li>
-</ol>
-<h3 id="配置nginx自动替换证书"><a href="#配置nginx自动替换证书" class="headerlink" title="配置nginx自动替换证书"></a>配置nginx自动替换证书</h3><p>创建目录及文件<code>/etc/nginx/conf.d/ssl/key.pem</code>,<code>/etc/nginx/conf.d/ssl/cert.pem</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --install-cert -d *.youDomin.com \</span><br><span class="line">--key-file       /etc/nginx/conf.d/ssl/key.pem  \</span><br><span class="line">--fullchain-file /etc/nginx/conf.d/ssl/cert.pem \</span><br><span class="line">--reloadcmd     &quot;nginx -s reload&quot;</span><br></pre></td></tr></table></figure>
-<p>此时证书会被复制到<code>/etc/nginx/conf.d/ssl/</code>目录下。并自动通过命令<code>nginx -s reload</code>重启nginx。所以这里都要替换成自己真是的。</p>
-<h3 id="这样就算完成了，acme-sh创建的定时任务会自动续期证书并更新证书重启nginx"><a href="#这样就算完成了，acme-sh创建的定时任务会自动续期证书并更新证书重启nginx" class="headerlink" title="这样就算完成了，acme.sh创建的定时任务会自动续期证书并更新证书重启nginx"></a>这样就算完成了，acme.sh创建的定时任务会自动续期证书并更新证书重启nginx</h3><h3 id="参见：https-github-com-acmesh-official-acme-sh"><a href="#参见：https-github-com-acmesh-official-acme-sh" class="headerlink" title="参见：https://github.com/acmesh-official/acme.sh"></a>参见：<a target="_blank" rel="noopener" href="https://github.com/acmesh-official/acme.sh">https://github.com/acmesh-official/acme.sh</a></h3>
+        
         
     </div>
     </div>
@@ -302,12 +276,16 @@ class="article article-type-post"
 <footer class="article-footer">
     <div class="article-more-info">
     <div class="article-date">
-  <time datetime="2023-03-09T11:20:34.000Z" itemprop="datePublished">2023-03-09</time>
+  <time datetime="2023-11-13T07:35:24.000Z" itemprop="datePublished">2023-11-13</time>
 </div>
+    
+        <div class="article-category">
+        <a class="article-category-link" href="/categories/Coding/">Coding</a>
+        </div>
     
     
         <div class="article-tag">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server/" rel="tag">Server</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Coding/" rel="tag">Coding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Why-Always-Wechat/" rel="tag">Why Always Wechat</a></li></ul>
         </div>
     
     </div>
@@ -320,7 +298,7 @@ class="article article-type-post"
 
   
     <nav class="pagination">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next</a>
     </nav>
   
 </div>
@@ -341,7 +319,7 @@ class="article article-type-post"
   <div class="widget-wrap widget-cate">
     <div class="widget-title"><span>Categories</span></div>
     <div class="widget-inner">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Golang/">Golang</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">小程序</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">Coding</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Golang/">Golang</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Reading/">Reading</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">小程序</a></li></ul>
     </div>
   </div>
 
@@ -351,7 +329,7 @@ class="article article-type-post"
   <div class="widget-wrap widget-tags">
     <div class="widget-title"><span>Tags</span></div>
     <div class="widget-inner">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/" rel="tag">GUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MifareClassic/" rel="tag">MifareClassic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NFC/" rel="tag">NFC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ndef/" rel="tag">Ndef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/embed/" rel="tag">embed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gin/" rel="tag">gin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webview/" rel="tag">webview</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coding/" rel="tag">Coding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GUI/" rel="tag">GUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MifareClassic/" rel="tag">MifareClassic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NFC/" rel="tag">NFC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ndef/" rel="tag">Ndef</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reading/" rel="tag">Reading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Why-Always-Wechat/" rel="tag">Why Always Wechat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/embed/" rel="tag">embed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gin/" rel="tag">gin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webview/" rel="tag">webview</a></li></ul>
     </div>
   </div>
 
