@@ -11,7 +11,7 @@ sidebar: false
 所以期望自己能先做些什么并坚持下去，行动起来：
 - 每天从社区、博客、或者文档之类的读些东西
 - 先把前面想到的内网文件同步工具实现，每天写点东西
-- 为此创建两个archive分别叫[Coding](/categories/Coding/) [Reading](/categories/Reading/)来记录
+- 为此创建了[Coding](/categories/Coding/) [Reading](/categories/Reading/)来记录
 
 >2023-11-13
 
