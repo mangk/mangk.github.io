@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: N+1
+title: 🥳
 subtitle: ''
 description: ''
 keywords:
@@ -62,7 +62,7 @@ prismjs:
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
-  per_page: 3
+  per_page: 5
   order_by: -date
 
 # Category & Tag
@@ -122,7 +122,7 @@ feed:
     content_limit:
     content_limit_delim: ' '
 
-theme: aomori # https://aomori.linhong.me/v/chinese/getting-started/intro
+# theme: aomori # https://aomori.linhong.me/v/chinese/getting-started/intro
 
 aomori_favicon: 🥳
 aomori_logo_typed_animated: false
