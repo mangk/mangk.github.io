@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Golang on 🥳</title>
+    <link>https://solobit.cn/tags/golang/</link>
+    <description>Recent content in Golang on 🥳</description>
+    <image>
+      <title>🥳</title>
+      <url>https://solobit.cn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://solobit.cn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 03 Nov 2022 13:53:12 +0000</lastBuildDate>
+    <atom:link href="https://solobit.cn/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang GUI开发总结</title>
+      <link>https://solobit.cn/post/golang-gui%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Thu, 03 Nov 2022 13:53:12 +0000</pubDate>
+      <guid>https://solobit.cn/post/golang-gui%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/</guid>
+      <description> govcl fyne wails walk wxwidgets webview </description>
+    </item>
+    <item>
+      <title>Golang构建桌面程序之webview</title>
+      <link>https://solobit.cn/post/golang%E6%9E%84%E5%BB%BA%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F%E4%B9%8Bwebview/</link>
+      <pubDate>Thu, 03 Nov 2022 12:19:36 +0000</pubDate>
+      <guid>https://solobit.cn/post/golang%E6%9E%84%E5%BB%BA%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F%E4%B9%8Bwebview/</guid>
+      <description>序 最近接到的任务是开发一个可以在mac和windows上运行的程序，作为一个golang程序员首先想到的自然是golang。跨平台编译运行也让他可以做这件事。结合前面我了解到的一些框架（govcl,fyne,wails,walk,wxwidgets），考虑学习的时间成本我本来是想用fyne来做。直到后来我找到了这个能更快完成需求的包webview。所以今天主要来介绍webview这个可以跨平台生成可执行文件的框架。
+Golang 的 webview package </description>
+    </item>
+    <item>
+      <title>使用alpine构建Docker镜像</title>
+      <link>https://solobit.cn/post/%E4%BD%BF%E7%94%A8alpine%E6%9E%84%E5%BB%BAdocker%E9%95%9C%E5%83%8F/</link>
+      <pubDate>Tue, 27 Sep 2022 11:21:51 +0000</pubDate>
+      <guid>https://solobit.cn/post/%E4%BD%BF%E7%94%A8alpine%E6%9E%84%E5%BB%BAdocker%E9%95%9C%E5%83%8F/</guid>
+      <description>序 最近的工作中，我使用Golang开发了一个web项目，并准备通过流水线的方式做持续集成与发布。在这是用过程中遇到了一些技术与问题包括：通过make构建golang程序、dockerfile不能访问父级目录、使用Alpine作为基础来制作我的容器镜像
+通过Makefile打包Golang程序 什么是Makefile 代码变成可执行文件，叫做编译（compile）；先编译这个，还是先编译那个（即编译的安排），叫做构建（build）。Make是最常用的构建工具，诞生于1977年，主要用于C语言的项目。但是实际上，任何只要某个文件有变化，就要重新构建的项目，都可以用Make构建。
+关于make命令这里不做深入介绍，引用链接提供介绍清晰明了的直通车（让我们感谢大神🙏） 阮一峰的网络日志-Make命令教程
+Golang项目使用Makefile 我对makefile文件的理解是它有点像时一个命令的集合，通过一个个target&amp;lt;目标&amp;gt;可以按照顺序快速的执行多条命令而不用再手动一条条输入。if else与变量的加入让这个流程变得更加丰富和多变。省去了命令输入的同时也让代码运行的流程更加清楚。
+示例代码 .PHONY: build clean run # golang 打包可执行文件的运行环境 (可以在运行make命令时传入：make OS=windows) OS=linux BUILD_DOCKER_IMAGE=0 all: build run: go run ./cmd/main.go build: # 下面的GOOS=$(OS)使用了上面定义的OS变量 @GO111MODULE=on GOPROXY=https://goproxy.cn,direct CGO_ENABLED=0 go mod tidy &amp;amp;&amp;amp; GOOS=$(OS) go build -o app main.go # if判断中同样可以使用变量 ifeq ($(BUILD_DOCKER_IMAGE),1) @cd deploy &amp;amp;&amp;amp; docker build -t . endif clean: # 命令前加@会让命令执行但不在控制台输出，这里没有@命令执行时会输出到终端 rm app ifeq ($(BUILD_DOCKER_IMAGE),1) @docker rmi recommend_photo endif Dockerfile不能访问父级目录 项目汇中我使用Dockerfile作为构架docker镜像的基础。通过docker build -t image_name .</description>
+    </item>
+    <item>
+      <title>Golang-embed包的使用</title>
+      <link>https://solobit.cn/post/golang-embed%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://solobit.cn/post/golang-embed%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>有点懒还没来得及写</description>
+    </item>
+  </channel>
+</rss>
