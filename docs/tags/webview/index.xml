@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>webview on 🥳</title>
+    <link>https://solobit.cn/tags/webview/</link>
+    <description>Recent content in webview on 🥳</description>
+    <image>
+      <title>🥳</title>
+      <url>https://solobit.cn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://solobit.cn/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 03 Nov 2022 12:19:36 +0000</lastBuildDate>
+    <atom:link href="https://solobit.cn/tags/webview/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang构建桌面程序之webview</title>
+      <link>https://solobit.cn/post/golang%E6%9E%84%E5%BB%BA%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F%E4%B9%8Bwebview/</link>
+      <pubDate>Thu, 03 Nov 2022 12:19:36 +0000</pubDate>
+      <guid>https://solobit.cn/post/golang%E6%9E%84%E5%BB%BA%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F%E4%B9%8Bwebview/</guid>
+      <description>序 最近接到的任务是开发一个可以在mac和windows上运行的程序，作为一个golang程序员首先想到的自然是golang。跨平台编译运行也让他可以做这件事。结合前面我了解到的一些框架（govcl,fyne,wails,walk,wxwidgets），考虑学习的时间成本我本来是想用fyne来做。直到后来我找到了这个能更快完成需求的包webview。所以今天主要来介绍webview这个可以跨平台生成可执行文件的框架。
+Golang 的 webview package </description>
+    </item>
+  </channel>
+</rss>
