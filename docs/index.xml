@@ -83,7 +83,7 @@ Golang项目使用Makefile 我对makefile文件的理解是它有点像时一个
 示例代码 .PHONY: build clean run # golang 打包可执行文件的运行环境 (可以在运行make命令时传入：make OS=windows) OS=linux BUILD_DOCKER_IMAGE=0 all: build run: go run ./cmd/main.go build: # 下面的GOOS=$(OS)使用了上面定义的OS变量 @GO111MODULE=on GOPROXY=https://goproxy.cn,direct CGO_ENABLED=0 go mod tidy &amp;amp;&amp;amp; GOOS=$(OS) go build -o app main.go # if判断中同样可以使用变量 ifeq ($(BUILD_DOCKER_IMAGE),1) @cd deploy &amp;amp;&amp;amp; docker build -t . endif clean: # 命令前加@会让命令执行但不在控制台输出，这里没有@命令执行时会输出到终端 rm app ifeq ($(BUILD_DOCKER_IMAGE),1) @docker rmi recommend_photo endif Dockerfile不能访问父级目录 项目汇中我使用Dockerfile作为构架docker镜像的基础。通过docker build -t image_name .</description>
     </item>
     <item>
-      <title>about</title>
+      <title>About</title>
       <link>https://solobit.cn/about/</link>
       <pubDate>Wed, 21 Sep 2022 22:21:41 +0000</pubDate>
       <guid>https://solobit.cn/about/</guid>

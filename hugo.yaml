@@ -19,19 +19,19 @@ minify:
 menu:
   main:
     - identifier: categories
-      name: 分类🗂️
+      name: 分类
       url: /categories/
       weight: 10
     - identifier: tags
-      name: 标签🏷️
+      name: 标签
       url: /tags/
       weight: 20
     - identifier: search
-      name: 搜索🔍
+      name: 搜索
       url: /search/
       weight: 30
     - identifier: about
-      name: 关于🔆
+      name: 关于
       url: /about/
       weight: 40
     # - identifier: example
@@ -48,7 +48,7 @@ params:
   # author: ["Me", "You"] # multiple authors
   images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "2006/01/02"
-  defaultTheme: auto # auto, dark, light
+  defaultTheme: dark # auto, dark, light
   disableThemeToggle: false
 
   ShowReadingTime: false
@@ -77,7 +77,7 @@ params:
     safari_pinned_tab: "<link / abs url>"
 
   label:
-    text: "Home"
+    text: "修猫工厂总部"
     icon: /apple-touch-icon.png
     iconHeight: 35
 

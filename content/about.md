@@ -1,8 +1,7 @@
 ---
-title: about
+title: About
 date: 2022-09-21 22:21:41
 layout: about
-sidebar: false
 ---
 
 ### 我的标签
