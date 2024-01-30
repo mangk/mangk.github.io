@@ -83,13 +83,6 @@ Golang项目使用Makefile 我对makefile文件的理解是它有点像时一个
 示例代码 .PHONY: build clean run # golang 打包可执行文件的运行环境 (可以在运行make命令时传入：make OS=windows) OS=linux BUILD_DOCKER_IMAGE=0 all: build run: go run ./cmd/main.go build: # 下面的GOOS=$(OS)使用了上面定义的OS变量 @GO111MODULE=on GOPROXY=https://goproxy.cn,direct CGO_ENABLED=0 go mod tidy &amp;amp;&amp;amp; GOOS=$(OS) go build -o app main.go # if判断中同样可以使用变量 ifeq ($(BUILD_DOCKER_IMAGE),1) @cd deploy &amp;amp;&amp;amp; docker build -t . endif clean: # 命令前加@会让命令执行但不在控制台输出，这里没有@命令执行时会输出到终端 rm app ifeq ($(BUILD_DOCKER_IMAGE),1) @docker rmi recommend_photo endif Dockerfile不能访问父级目录 项目汇中我使用Dockerfile作为构架docker镜像的基础。通过docker build -t image_name .</description>
     </item>
     <item>
-      <title></title>
-      <link>https://solobit.cn/post/%E6%9C%80%E8%BF%91%E6%9B%B4%E6%96%B0/</link>
-      <pubDate>Thu, 01 Jan 1970 00:00:00 +0000</pubDate>
-      <guid>https://solobit.cn/post/%E6%9C%80%E8%BF%91%E6%9B%B4%E6%96%B0/</guid>
-      <description>解锁新的传送锚点 🥳 </description>
-    </item>
-    <item>
       <title>Golang-embed包的使用</title>
       <link>https://solobit.cn/post/golang-embed%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
