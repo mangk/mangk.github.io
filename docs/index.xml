@@ -83,6 +83,16 @@ Golang项目使用Makefile 我对makefile文件的理解是它有点像时一个
 示例代码 .PHONY: build clean run # golang 打包可执行文件的运行环境 (可以在运行make命令时传入：make OS=windows) OS=linux BUILD_DOCKER_IMAGE=0 all: build run: go run ./cmd/main.go build: # 下面的GOOS=$(OS)使用了上面定义的OS变量 @GO111MODULE=on GOPROXY=https://goproxy.cn,direct CGO_ENABLED=0 go mod tidy &amp;amp;&amp;amp; GOOS=$(OS) go build -o app main.go # if判断中同样可以使用变量 ifeq ($(BUILD_DOCKER_IMAGE),1) @cd deploy &amp;amp;&amp;amp; docker build -t . endif clean: # 命令前加@会让命令执行但不在控制台输出，这里没有@命令执行时会输出到终端 rm app ifeq ($(BUILD_DOCKER_IMAGE),1) @docker rmi recommend_photo endif Dockerfile不能访问父级目录 项目汇中我使用Dockerfile作为构架docker镜像的基础。通过docker build -t image_name .</description>
     </item>
     <item>
+      <title>about</title>
+      <link>https://solobit.cn/about/</link>
+      <pubDate>Wed, 21 Sep 2022 22:21:41 +0000</pubDate>
+      <guid>https://solobit.cn/about/</guid>
+      <description>这是我的第N+1个站点 我是新时代的农民工、口号学家、喜欢晒网的摸鱼员工、感动中国特别奖获奖嘉宾。但从来不是一个合格的程序员。所以工作几年时间一直也没能沉淀点东西。这次借着兴致又起来了，我创建了这个站点，并希望未来能在这里记录下遇到的问题，或者是留下点什么有意思的东西。
+工作这些年 从毕业到现在也有近5年的时间了，大部分期望是没有达到的。唯独开发这件事我还一直做着。确实喜欢，再就是现在只有这门手艺能混口饭吃。在某音看有500万就可以在小城市自由了。很好！还差490多万&amp;hellip;我得加油！
+以前一直想着进个大厂。但从最近这段时间的经历来看，一是我的能力还差得远，二是大厂里也会有人渣并不一定总能如愿。但好在我现在有一份让自己满意的工作。那就也加油吧！
+先这样，以后想到啥再来补充（2022-09-21 22:38）</description>
+    </item>
+    <item>
       <title>Golang-embed包的使用</title>
       <link>https://solobit.cn/post/golang-embed%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
