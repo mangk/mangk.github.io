@@ -11,8 +11,17 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 02 Nov 2023 18:04:38 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 07 Mar 2024 11:34:24 +0800</lastBuildDate>
     <atom:link href="https://solobit.cn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SQLite获取毫秒时间戳</title>
+      <link>https://solobit.cn/post/sqlite%E8%8E%B7%E5%8F%96%E6%AF%AB%E7%A7%92%E6%97%B6%E9%97%B4%E6%88%B3/</link>
+      <pubDate>Thu, 07 Mar 2024 11:34:24 +0800</pubDate>
+      <guid>https://solobit.cn/post/sqlite%E8%8E%B7%E5%8F%96%E6%AF%AB%E7%A7%92%E6%97%B6%E9%97%B4%E6%88%B3/</guid>
+      <description>先说结论 SQLite 获取毫秒级时间戳可以通过拼接的方式：
+-- 通过 SQLite 内置函数拼凑毫秒时间戳 SELECT (strftime(&amp;#39;%s&amp;#39;, &amp;#39;now&amp;#39;) * 1000 + substr(strftime(&amp;#39;%f&amp;#39;, &amp;#39;now&amp;#39;),4,3)) AS milliseconds; --&amp;gt;结果：1709783374677 唠叨一下我在干什么 最近在开发中使用到了 SQLite 来讲数据保存到本地，并有条件的将数据同步到云端。所以我设计了表结果如下：
+服务端表 CREATE TABLE `book` ( `id` int NOT NULL AUTO_INCREMENT, `local_id` bigint NOT NULL COMMENT &amp;#39;用户本地数据表id&amp;#39;, `uid` int NOT NULL COMMENT &amp;#39;所属用户&amp;#39;, other columns... PRIMARY KEY (`id`), UNIQUE KEY `user_local_data_idx` (`local_id`,`uid`) USING BTREE ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci; 客户端 SQLite 表 CREATE TABLE book	( id TIMESTAMP PRIMARY KEY, other columns.</description>
+    </item>
     <item>
       <title>小程序wx.navigateTo中的闭包</title>
       <link>https://solobit.cn/post/%E5%B0%8F%E7%A8%8B%E5%BA%8Fwx-navigateto%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85/</link>

@@ -44,7 +44,7 @@ params:
   title: 🥳
   description: "ExampleSite description"
   keywords: [Blog, Portfolio, PaperMod]
-  author: Mangk
+  author: mangk
   # author: ["Me", "You"] # multiple authors
   images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "2006/01/02"
