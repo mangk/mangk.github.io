@@ -2,7 +2,7 @@
 title = 'SQLite获取毫秒时间戳'
 date = 2024-03-07T11:34:24+08:00
 draft = false
-categories = ['独立开发日记']
+categories = ['开发日记']
 +++
 
 # 先说结论
