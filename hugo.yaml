@@ -108,6 +108,8 @@ params:
     #   url: "https://stackoverflow.com"
     - name: github
       url: "https://github.com/mangk"
+    - name: email
+      url: "mailto:mangk.l@qq.com"
 
   # analytics:
   #   google:
