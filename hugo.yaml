@@ -2,7 +2,7 @@ baseURL: https://solobit.cn/
 languageCode: zh
 title: 🥳
 theme: ["PaperMod"] # https://github.com/adityatelange/hugo-PaperMod/wiki/Installation#sample-configyml
-publishDir: docs 
+publishDir: docs
 paginate: 5
 
 enableRobotsTXT: true
@@ -140,6 +140,9 @@ params:
     minMatchCharLength: 0
     limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
     keys: ["title", "permalink", "summary", "content"]
+
+  busuanzi:
+    enable: true
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true

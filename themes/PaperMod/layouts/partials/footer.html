@@ -9,8 +9,21 @@
     <span>
         <a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备17019241号-4</a>
     </span>
+    |
+    {{ if .Site.Params.busuanzi.enable -}}
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <span id="busuanzi_container_site_pv">
+        访问<span id="busuanzi_value_site_pv"></span>
+    </span>
+    |
+    <span id="busuanzi_container_site_uv">
+        访客<span id="busuanzi_value_site_uv"></span>
+    </span>
+    {{- end -}}
 </footer>
 {{- end }}
+
 
 {{- if (not site.Params.disableScrollToTop) }}
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
