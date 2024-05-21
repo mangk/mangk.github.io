@@ -11,8 +11,30 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 07 Mar 2024 11:34:24 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 21 May 2024 10:21:33 +0800</lastBuildDate>
     <atom:link href="https://solobit.cn/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用移动宽带IPV6在公网暴露端口和服务</title>
+      <link>https://solobit.cn/post/%E4%BD%BF%E7%94%A8%E7%A7%BB%E5%8A%A8%E5%AE%BD%E5%B8%A6ipv6%E5%9C%A8%E5%85%AC%E7%BD%91%E6%9A%B4%E9%9C%B2%E7%AB%AF%E5%8F%A3%E5%92%8C%E6%9C%8D%E5%8A%A1/</link>
+      <pubDate>Tue, 21 May 2024 10:21:33 +0800</pubDate>
+      <guid>https://solobit.cn/post/%E4%BD%BF%E7%94%A8%E7%A7%BB%E5%8A%A8%E5%AE%BD%E5%B8%A6ipv6%E5%9C%A8%E5%85%AC%E7%BD%91%E6%9A%B4%E9%9C%B2%E7%AB%AF%E5%8F%A3%E5%92%8C%E6%9C%8D%E5%8A%A1/</guid>
+      <description>Loading&amp;hellip;</description>
+    </item>
+    <item>
+      <title>小米路由器4A千兆版获取ssh权限</title>
+      <link>https://solobit.cn/post/%E5%B0%8F%E7%B1%B3%E8%B7%AF%E7%94%B1%E5%99%A84a%E5%8D%83%E5%85%86%E7%89%88%E8%8E%B7%E5%8F%96ssh%E6%9D%83%E9%99%90/</link>
+      <pubDate>Tue, 21 May 2024 10:15:35 +0800</pubDate>
+      <guid>https://solobit.cn/post/%E5%B0%8F%E7%B1%B3%E8%B7%AF%E7%94%B1%E5%99%A84a%E5%8D%83%E5%85%86%E7%89%88%E8%8E%B7%E5%8F%96ssh%E6%9D%83%E9%99%90/</guid>
+      <description>最近在干什么 最近被人问到怎么将自己电脑上的服务暴露到公网上，加上此前对内网穿透相关技术的了解。决定基于光猫的 IPV6 尝试一下。
+经过尝试并结合网上的文章我发现小米路由器本身存在 IPV6 防火墙，所以这里主要介绍如何通过 ssh 登录路由器并关闭防火墙.
+网上的文章有很多，但有些重点内容不注意就无法成功，所以这里做一个总结
+有关使用移动宽带 IPV6 在公网暴露端口和服务看这里：传送门
+获取 SSH 权限 其中的重点包括：
+执行程序的电脑要通过网线连接到路由器不能使用 wifi 程序要在 Mac 或 Linux 环境下运行 要在 Windows 下运行需要借助 Docker 环境 程序运行第一次可能不成功，多试两次 我的路由器固件版本是 2.30.500 亲测这个版本成s功了 路由器重启后，已经开放的 ssh 端口会关闭，需要重新执行脚本 下载 OpenwrtInvasion 脚本，该脚本用于通过漏洞对官方固件开启 ssh Github地址：https://github.com/acecilia/OpenWRTInvasion
+执行命令的两种方式 Windows:
+# 借助 Docker # 构建一个包含程序所需运行环境的镜像 docker build -t openwrtinvasion https://github.com/acecilia/OpenWRTInvasion.git # 使用这个镜像运行 docker run --network host -it openwrtinvasion Mac or Linux:
+# 需要 Python 环境 # 安装依赖 pip3 install -r requirements.</description>
+    </item>
     <item>
       <title>SQLite获取毫秒时间戳</title>
       <link>https://solobit.cn/post/sqlite%E8%8E%B7%E5%8F%96%E6%AF%AB%E7%A7%92%E6%97%B6%E9%97%B4%E6%88%B3/</link>
