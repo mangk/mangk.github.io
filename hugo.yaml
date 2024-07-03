@@ -1,6 +1,6 @@
 baseURL: https://solobit.cn/
 languageCode: zh
-title: 🆈🅴🅾🅿︎
+title: 独立比特 #🆈🅴🅾🅿︎
 theme: ["PaperMod"] # https://github.com/adityatelange/hugo-PaperMod/wiki/Installation#sample-configyml
 publishDir: docs
 paginate: 5
@@ -77,7 +77,7 @@ params:
     safari_pinned_tab: "<link / abs url>"
 
   label:
-    text: "🆈🅴🅾🅿︎"
+    text: 独立比特 #"🆈🅴🅾🅿︎"
     icon: /apple-touch-icon.png
     iconHeight: 35
 
